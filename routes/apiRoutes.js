@@ -15,7 +15,9 @@ module.exports = function(app) {
       if (!dbGame) {
         res.status(404).send("Not found.");
       }
-      res.json(dbGame);
+      db.Task.findAll({ where: { id: req.params.id } }).then(function(dbTasks) {
+        res.json(Object.assign({ tasks: dbTasks }, dbGame.dataValues));
+      });
     });
   });
 
@@ -52,13 +54,16 @@ module.exports = function(app) {
 
   // Get a specific task
   app.get("/api/tasks/:id", function(req, res) {
-    db.Task.findOne({ where: { id: req.params.id } }).then(function(dbTask) {
+    db.Task.findByPk(req.params.id).then(function(dbTask) {
+      if (!dbTask) {
+        res.status(404).send("Not found.");
+      }
       res.json(dbTask);
     });
   });
 
   // Saving a new task
-  app.post("/api/games/tasks", function(req, res) {
+  app.post("/api/tasks", function(req, res) {
     db.Task.create({
       game_id: req.body.game_id,
       title: req.body.title,
@@ -70,22 +75,31 @@ module.exports = function(app) {
   });
 
   // Delete a task by id
-  app.delete("/api/games/tasks/:id", function(req, res) {
+  app.delete("/api/tasks/:id", function(req, res) {
     db.Task.destroy({ where: { id: req.params.id } }).then(function(dbTask) {
       res.json(dbTask);
     });
   });
 
   //Update task
-  app.put("/api/games/tasks", function(req, res) {
+  app.put("/api/tasks/:id", function(req, res) {
     db.Task.update(req.body, {
       where: {
         id: req.body.id
       }
-    }).then(function(dbTask) {
-      res.json(dbTask);
+    }).then(function() {
+      db.Task.findByPk(req.params.id).then(function(dbTask) {
+        res.json(dbTask);
+      });
     });
+  });
 
-    app.post("/api/login", function(req, res) {});
+  app.post("/api/login", function(req, res) {});
+
+  app.put("/api/user/taskdone", function(req, res) {
+    // input {task_id: number, user_id: number} // user_id should come from passport.js
+  });
+  app.put("/api/user/joingame", function(req, res) {
+    // input {game_id: number, user_id: number} // user_id should come from passport.js
   });
 };

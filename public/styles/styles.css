@@ -14,6 +14,13 @@ h1{
   font-size: 2.5rem;
 }
 
+h2{
+  margin-top: 0.75rem;
+  margin-bottom: 1rem;
+  font-family: 'Jacques Francois Shadow', cursive;
+  font-size: 2rem;
+}
+
 .chooseGameCardTitles{
   margin-bottom: 1rem;
 }

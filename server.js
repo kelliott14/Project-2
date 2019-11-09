@@ -6,7 +6,7 @@ var Sequelize = require("sequelize");
 var db = require("./models");
 
 var app = express();
-var PORT = process.env.PORT || 3000;
+var PORT = process.env.PORT || 3001;
 
 // Middleware
 app.use(express.urlencoded({ extended: false }));
@@ -35,18 +35,14 @@ if (process.env.NODE_ENV === "test") {
 }
 
 // Starting the server, syncing our models ------------------------------------/
-db.sequelize.sync(syncOptions).then(function () {
-  app.listen(PORT, function () {
+db.sequelize.sync(syncOptions).then(function() {
+  app.listen(PORT, function() {
     console.log(
       "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
       PORT,
       PORT
     );
   });
-});
-
-app.listen(PORT, () => {
-  console.log("Running server on port: " + PORT);
 });
 
 module.exports = app;

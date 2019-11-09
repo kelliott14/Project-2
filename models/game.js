@@ -15,13 +15,18 @@ module.exports = function(sequelize, DataTypes) {
 
       // }
     },
-    game_length: {
+    ends_at: {
       type: DataTypes.DATE,
       allowNull: false
       // validate: {
 
       // }
     }
+  });
+  Game.create({
+    title: "Test Game",
+    draft_status: true,
+    ends_at: Date.now()
   });
   return Game;
 };

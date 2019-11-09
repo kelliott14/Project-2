@@ -61,3 +61,56 @@ h2{
   margin-top: 3.75rem;
   border-top: inset;
 }
+
+.list-group-item{
+  color: black;
+}
+
+#firstPlaceBadge{
+  background-color: #ffc938;
+}
+
+#secondPlaceBadge{
+  background-color: #2a8e9d;
+}
+
+#thirdPlaceBadge{
+  background-color: #ff5245;
+}
+
+.pointsBadge{
+  background-color: #374050;
+}
+
+.badge{
+  color: white;
+  padding-top: 0.75rem;
+  border-radius: 20px;
+  font-size: 1rem;
+}
+
+#thisUserBadge{
+  background-color: #ffc938;
+}
+
+.taskBadge{
+  background-color: white;
+  color: white;
+  border: 5px solid #374050;
+  height: 3rem;
+  width: 3rem;
+  border-radius: 30px;
+  margin-bottom: 1rem;
+}
+
+.complete{
+  background-color: #374050;
+  color: white;
+}
+
+.playGameTimeRemaining,
+.playGameTasks,
+.playGameGameScore,
+.playGameLeaderboard{
+  margin-bottom: 1rem;
+}

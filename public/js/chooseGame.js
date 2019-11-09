@@ -5,27 +5,28 @@ $(document).ready(function() {
     $("#chooseGameSelectedGame").modal("show");
   });
 
-  var games;
+  $("#viewLeaderboardModal").on("click", function() {
+    console.log("clicked");
+    $("#leaderBoardModal").modal("show");
+  });
 
-  //function to call the games data from the db
-  function getGames() {
-    $.get("/api/games", function(data) {
-      games = data;
+  $(".taskBadge").on("click", function() {
+    console.log("clicked");
+    $("#playGameTaskItemModal").modal("show");
+  });
+
+  //   var games;
+  //   //function to call the games data from the db
+  //   function getGames() {
+  //     $.get("/api/games", function(data) {
+  //       games = data;
         
-      createGameCards(games);
-    });
-  }
-
-  //function to create a card for each game
-  function createGameCards(games) {
+  //       createGameCards(games);
+  //     });
+  //   }
+  //   //function to create a card for each game
+  //   function createGameCards(games) {
       
-  }
-
-
-
-
-
-
-
+//   }
 });
 

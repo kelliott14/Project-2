@@ -1,0 +1,149 @@
+<div id="playGame">
+
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #F7F6F4;">
+    <a class="navbar-brand">
+      <img src="/assets/foxlogonobg.png" width="30" height="30" alt="">
+    </a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item ">
+        <a class="nav-link" href="/">Home </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">User Dashboard</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/chooseGame">Choose a Game</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+{{!-- Using static data only - this will need to be changed to JS once db is up --}}
+  <div class="container">
+    <h1>Game 1</h1>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card playGameTimeRemaining">
+                    <div class="card-body">
+                        <h4>Time remaining in this game</h4>
+                        <h4>4hrs 13mins</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="playGameTasks">
+                <h4>Tasks</h4>
+              <span class="badge taskBadge complete">&#10004;</span>
+              <span class="badge taskBadge complete">&#10004;</span>
+              <span class="badge taskBadge complete">&#10004;</span>
+              <span class="badge taskBadge incomplete">.</span>
+              <span class="badge taskBadge incomplete">.</span>
+              <span class="badge taskBadge incomplete">.</span>
+              <span class="badge taskBadge incomplete">.</span>
+              <span class="badge taskBadge incomplete">.</span>
+              <span class="badge taskBadge incomplete">.</span>
+              <span class="badge taskBadge incomplete">.</span>
+          </div>
+      </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card playGameGameScore">
+                <div class="card-body">
+                    <h4>Your Score</h4>
+                    <h4>65 points</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card playGameLeaderboard">
+                <button type="button" class="btn btn-lg btn-block" data-toggle="modal" id="viewLeaderboardModal">
+                    View Leaderboard
+                </button>   
+            </div>
+        </div>
+    </div>
+
+</div>
+{{!-- Leaderboard modal --}}
+  <div class="modal" tabindex="-1" role="dialog" id="leaderBoardModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title">Leaderboard: Game 1</h1>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between"> 
+                        <span class="badge badge-pill" id="firstPlaceBadge">1st</span>
+                        Username
+                        <span class="badge badge-pill pointsBadge">200pts</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between"> 
+                        <span class="badge badge-pill" id="secondPlaceBadge">2nd</span>
+                        Username
+                        <span class="badge badge-pill pointsBadge">170pts</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between"> 
+                        <span class="badge badge-pill" id="thirdPlaceBadge">3rd</span>
+                        Username
+                        <span class="badge badge-pill pointsBadge">110pts</span>
+                    </li>
+                </ul>
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between"> 
+                        <span class="badge badge-pill" id="thisUserBadge">27th</span>
+                        this user
+                        <span class="badge badge-pill pointsBadge">65pts</span>
+                    </li>
+                </ul>   
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+ </div>
+
+<div class="modal" tabindex="-1" role="dialog" id="playGameTaskItemModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title">Task 1</h1>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h2 class="text-center">Task Title</h2>
+        <p class="text-centre">This is where the task description will go. 
+            And go and go and go and go and go and go and go and go  and go and go and go </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn" id="completeTaskItem">Complete</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+

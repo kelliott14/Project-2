@@ -39,10 +39,10 @@ module.exports = function(sequelize, DataTypes) {
 
       // }
     },
-    game_status: {
+    game_finished: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
-      defaultValue: true
+      defaultValue: false
       // validate: {
 
       // }

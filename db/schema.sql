@@ -37,6 +37,6 @@ CREATE TABLE user_game
     `game_id` varchar(255) NOT NULL,
     `game_points` INT NOT NULL DEFAULT 0,
     `start_time` TIMESTAMP DEFAULT NOW(),
-    `game_status` BOOLEAN NOT NULL DEFAULT true,
+    `game_finished` BOOLEAN NOT NULL DEFAULT false,
     PRIMARY KEY (id)
 );

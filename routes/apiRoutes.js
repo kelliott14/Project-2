@@ -11,7 +11,10 @@ module.exports = function(app) {
 
   // Get a specific game
   app.get("/api/games/:id", function(req, res) {
-    db.Game.findOne({ where: { id: req.params.id } }).then(function(dbGame) {
+    db.Game.findByPk(req.params.id).then(function(dbGame) {
+      if (!dbGame) {
+        res.status(404).send("Not found.");
+      }
       res.json(dbGame);
     });
   });
@@ -21,7 +24,7 @@ module.exports = function(app) {
     db.Game.create({
       title: req.body.title,
       draft_status: req.body.draft_status,
-      game_length: req.body.game_length
+      ends_at: req.body.ends_at
     }).then(function(dbGame) {
       res.json(dbGame);
     });
@@ -34,14 +37,16 @@ module.exports = function(app) {
     });
   });
 
-  //Updating game
-  app.put("/api/games", function(req, res) {
+  // Updating game
+  app.put("/api/games/:id", function(req, res) {
     db.Game.update(req.body, {
       where: {
-        id: req.body.id
+        id: req.params.id
       }
-    }).then(function(dbGame) {
-      res.json(dbGame);
+    }).then(function() {
+      db.Game.findByPk(req.params.id).then(function(dbGame) {
+        res.json(dbGame);
+      });
     });
   });
 

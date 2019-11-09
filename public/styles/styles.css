@@ -45,7 +45,12 @@ h1{
   font-size: 1.5rem;
 }
 
-#chooseGameStartGame{
+.btn{
   background-color: #ff5245;
   color: white;
+}
+
+.indexCreateUserForm{
+  margin-top: 3.75rem;
+  border-top: inset;
 }

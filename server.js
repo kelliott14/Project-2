@@ -45,8 +45,8 @@ db.sequelize.sync(syncOptions).then(function () {
   });
 });
 
-app.listen(PORT, () => {
-  console.log("Running server on port: " + PORT);
-});
+// app.listen(PORT, () => {
+//   console.log("Running server on port: " + PORT);
+// });
 
 module.exports = app;

@@ -1,6 +1,9 @@
 DROP DATABASE IF EXISTS foxhunt_db;
+
 CREATE DATABASE foxhunt_db;
+
 USE foxhunt_db;
+
 CREATE TABLE user
 (
     id int NOT NULL AUTO_INCREMENT,

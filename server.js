@@ -1,6 +1,7 @@
 require("dotenv").config();
 var express = require("express");
 var exphbs = require("express-handlebars");
+var Sequelize = require("sequelize");
 
 var db = require("./models");
 
@@ -14,10 +15,10 @@ app.use(express.static("public"));
 
 // Handlebars
 app.engine(
-    "handlebars",
-    exphbs({
-        defaultLayout: "main"
-    })
+  "handlebars",
+  exphbs({
+    defaultLayout: "main"
+  })
 );
 app.set("view engine", "handlebars");
 
@@ -25,39 +26,27 @@ app.set("view engine", "handlebars");
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
 
-var connection = mysql.createConnection({
-    host: "localhost",
-    port: 3306,
-    user: "root",
-    password: "12345678",
-    database: "foxhunt_db"
-});
-
-connection.connect(function(err) {
-    if (err) {
-        console.error("error connecting: " + err.stack);
-        return;
-    }
-    console.log("connected as id " + connection.threadId);
-});
-
 var syncOptions = { force: false };
 
 // If running a test, set syncOptions.force to true
 // clearing the `testdb`
 if (process.env.NODE_ENV === "test") {
-    syncOptions.force = true;
+  syncOptions.force = true;
 }
 
 // Starting the server, syncing our models ------------------------------------/
-db.sequelize.sync(syncOptions).then(function() {
-    app.listen(PORT, function() {
-        console.log(
-            "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
-            PORT,
-            PORT
-        );
-    });
+db.sequelize.sync(syncOptions).then(function () {
+  app.listen(PORT, function () {
+    console.log(
+      "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
+      PORT,
+      PORT
+    );
+  });
+});
+
+app.listen(PORT, () => {
+  console.log("Running server on port: " + PORT);
 });
 
 module.exports = app;

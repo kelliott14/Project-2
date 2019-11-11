@@ -12,6 +12,7 @@ h1{
   margin-bottom: 1rem;
   font-family: 'Jacques Francois Shadow', cursive;
   font-size: 2.5rem;
+  width: 100vh;
 }
 
 h2{
@@ -19,6 +20,7 @@ h2{
   margin-bottom: 1rem;
   font-family: 'Jacques Francois Shadow', cursive;
   font-size: 2rem;
+  width: 100vh;
 }
 
 .chooseGameCardTitles{
@@ -118,4 +120,17 @@ h2{
 #dashboardUsernameDisplay{
   margin-top: 2rem;
   margin-bottom: 2rem;
+}
+
+.openGameBadge,
+.closedGameBadge{
+  float: right;
+}
+
+.progress{
+  clear: both;
+}
+
+.progress-bar{
+  background-color: #374050;
 }

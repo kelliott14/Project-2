@@ -85,7 +85,7 @@ module.exports = function(app) {
   app.put("/api/tasks/:id", function(req, res) {
     db.Task.update(req.body, {
       where: {
-        id: req.body.id
+        id: req.params.id
       }
     }).then(function() {
       db.Task.findByPk(req.params.id).then(function(dbTask) {
@@ -94,12 +94,117 @@ module.exports = function(app) {
     });
   });
 
-  app.post("/api/login", function(req, res) {});
+  //To do: wait for passport.js
+  // app.post("/api/login", function(req, res) {});
 
-  app.put("/api/user/taskdone", function(req, res) {
-    // input {task_id: number, user_id: number} // user_id should come from passport.js
+  // Joins a game and copies all tasks of that game for that user.
+  // Request: body {task_id: number}
+  // Response: either existing UserGame or newly joined UserGame
+  app.put("/api/users/:user_id/joingame", function(req, res) {
+    db.UserGame.findOne({
+      where: {
+        user_id: req.params.user_id,
+        game_id: req.body.game_id
+      }
+    }).then(function(dbUserGame) {
+      if (!dbUserGame) {
+        db.UserGame.create({
+          user_id: req.params.user_id,
+          game_id: req.body.game_id
+        }).then(function(newDbUserGame) {
+          db.Task.findAll({
+            where: {
+              game_id: req.body.game_id
+            }
+          }).then(function(dbTasks) {
+            dbTasks.forEach(function(dbTask) {
+              db.UserTask.create({
+                user_id: req.params.user_id,
+                task_id: dbTask.id
+              });
+            });
+            res.json(newDbUserGame);
+          });
+        });
+      } else {
+        res.json(dbUserGame);
+      }
+    });
   });
-  app.put("/api/user/joingame", function(req, res) {
-    // input {game_id: number, user_id: number} // user_id should come from passport.js
+
+  // Returns all tasks of all games a user has joined
+  app.get("/api/users/:user_id/tasks", function(req, res) {
+    db.UserTask.findAll({
+      where: {
+        user_id: req.params.user_id
+      }
+    }).then(function(dbUserTasks) {
+      res.json(dbUserTasks);
+    });
+  });
+
+  // Sets a UserTask to done and increments the UserGame's points by the Task's points.
+  app.put("/api/users/:user_id/tasks/:task_id", function(req, res) {
+    if (req.body.task_done) {
+      db.UserTask.findOne({
+        where: {
+          user_id: req.params.user_id,
+          task_id: req.params.task_id
+        }
+      }).then(function(dbUserTask) {
+        if (!dbUserTask) {
+          res.status(404).send("Not found.");
+        } else {
+          if (!dbUserTask.task_done) {
+            db.UserTask.update(req.body, {
+              where: {
+                user_id: req.params.user_id,
+                task_id: req.params.task_id
+              }
+            }).then(function() {
+              db.Task.findByPk(req.params.task_id).then(function(dbTask) {
+                if (!dbTask) {
+                  res.status(500).send("No Task for UserTask");
+                } else {
+                  db.UserGame.findOne({
+                    where: {
+                      user_id: req.params.user_id,
+                      game_id: dbTask.game_id
+                    }
+                  }).then(function(dbUserGame) {
+                    if (!dbUserGame) {
+                      res.status(500).send("No Task for UserTask");
+                    } else {
+                      db.UserGame.update(
+                        {
+                          game_points: dbTask.points + dbUserGame.game_points
+                        },
+                        {
+                          where: {
+                            user_id: req.params.user_id,
+                            game_id: dbTask.game_id
+                          }
+                        }
+                      ).then(function() {
+                        db.UserTask.findOne({
+                          where: {
+                            user_id: req.params.user_id,
+                            task_id: req.params.task_id
+                          }
+                        }).then(function(updatedDbUserTask) {
+                          res.json(updatedDbUserTask);
+                        });
+                      });
+                    }
+                  });
+                }
+              });
+            });
+          } else {
+            res.json(dbUserTask);
+          }
+        }
+      });
+    }
   });
 };

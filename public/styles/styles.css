@@ -114,3 +114,8 @@ h2{
 .playGameLeaderboard{
   margin-bottom: 1rem;
 }
+
+#dashboardUsernameDisplay{
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}

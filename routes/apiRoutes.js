@@ -218,4 +218,7 @@ module.exports = function (app) {
             });
           }
         });
-      };
+      })
+    })
+  })
+};

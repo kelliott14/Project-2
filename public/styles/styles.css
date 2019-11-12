@@ -113,7 +113,9 @@ h2{
 .playGameTimeRemaining,
 .playGameTasks,
 .playGameGameScore,
-.playGameLeaderboard{
+.playGameLeaderboard,
+#taskAdd,
+.activateGame{
   margin-bottom: 1rem;
 }
 

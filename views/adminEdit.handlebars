@@ -1,0 +1,125 @@
+<div id="adminEdit">
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #F7F6F4;">
+    <a class="navbar-brand">
+      <img src="/assets/foxlogonobg.png" width="30" height="30" alt="">
+    </a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/index">Home </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/dashboard">User Dashboard</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/chooseGame">Choose a Game</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+    <div class="addEditGame">
+        <h1>Add or Edit a Game</h1>
+        <form class="addEditGameForm">
+        <div class="form-group">
+            <h2>Edit Game</h2>
+            <label for="gameTitle">Game Title</label>
+            <input type="title" class="form-control" id="gameTitle" aria-describedby="emailHelp" placeholder="Enter the game title">
+        </div>
+        <label class="mr-sm-2" for="inlineFormCustomSelect">Game Length</label>
+        <div class="form-row">
+            <div class="col-6">
+                <input type="number" class="form-control" placeholder="hours">
+            </div>
+            <div class="col-6">
+                <input type="number" class="form-control" placeholder="mins">
+            </div>
+            <div class="col-auto my-1">
+                <button type="submit" class="btn" id="gameEditAdd">Submit</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="currentTaskList">
+        <h1>All Tasks on This Game</h1>
+        <button type="submit" class="btn" id="taskAdd">Add New Task</button>
+        <div class="row">
+            <div class="col-sm-6 card-deck">
+                <div class="card text-white mb-3" style="max-width: 18rem; background-color: #374050;">
+                    <div class="card-body">
+                        <h4 class="card-title taskTitle">Task Title</h4>
+                        <p class="card-text taskDescription">This is where the task description will go. 
+                            And go and go and go and go and go and go and go and go  and go and go and go</p>
+                        <p class="card-text taskPoints">30 pts</p>
+                    </div>
+                </div>
+                
+                <div class="card text-white mb-3" style="max-width: 18rem; background-color: #2a8e9d;">
+                    <div class="card-body">
+                        <h4 class="card-title taskTitle">Task Title</h4>
+                        <p class="card-text taskDescription">This is where the task description will go. 
+                            And go and go and go and go and go and go and go and go  and go and go and go</p>
+                        <p class="card-text taskPoints">30 pts</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a type="button" class="btn btn-lg btn-block activateGame" role="button">Activate Game</a>
+
+    <div class="modal" tabindex="-1" role="dialog" id="addEditTask">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title">Add/Edit Task</h1>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="taskTitle">Task Title</label>
+                        <input type="title" class="form-control" id="taskTitle" aria-describedby="emailHelp" placeholder="Enter the task title">
+                        <label for="taskDescription">Task Description</label>
+                        <textarea type="input" class="form-control" id="taskDescription" aria-describedby="emailHelp" placeholder="Enter the task description"rows="3"></textarea>
+                        <label for="taskTitle">Task Points</label>
+                        <input type="number" class="form-control" id="taskTitle" aria-describedby="emailHelp" placeholder="Choose task points">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn" id="addTask">Add Task</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+  </div>
+
+  <div class="modal" tabindex="-1" role="dialog" id="activateGame">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p>Ready to add this game for users to play?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn" id="addTask">Activate Game</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+  </div>
+
+</div>
+
+</div>
+
+
+</div>
+
+

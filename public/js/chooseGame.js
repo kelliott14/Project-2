@@ -15,6 +15,16 @@ $(document).ready(function() {
     $("#playGameTaskItemModal").modal("show");
   });
 
+  $("#taskAdd").on("click", function() {
+    console.log("clicked");
+    $("#addEditTask").modal("show");
+  });
+
+  $(".activateGame").on("click", function() {
+    console.log("clicked");
+    $("#activateGame").modal("show");
+  });
+
   //   var games;
   //   //function to call the games data from the db
   //   function getGames() {

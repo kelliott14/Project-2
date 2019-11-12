@@ -16,11 +16,14 @@ module.exports = function (app) {
         user_name: req.body.userLogin
       }
     }).then(function (results) {
-      console.log(results);
+      // console.log(results);
       if (results && req.body.userPassword == results.password) {
         var token = jwt.sign({ user: results.id }, 'secret', { expiresIn: 10000000 });
         res.cookie('token', token);
-        res.redirect('/dashboard');
+        console.log(results.id);
+        res.cookie('userId', results.id);
+        // localStorage.setItem("userId", results.id)
+        res.render('dashboard');
       } else {
         res.render('index', {
           message: 'authentication error'

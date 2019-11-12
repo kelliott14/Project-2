@@ -1,9 +1,13 @@
 /* eslint-disable camelcase */
 var db = require("../models");
+var token = require('../routes/htmlRoutes');
 
 module.exports = function (app) {
   // Get all games: user choosing a game to play
   app.get("/api/games", function (req, res) {
+    console.log(res.cookie("user"));
+    // console.log(localStorage.getItem("userId"))
+
     db.Game.findAll({}).then(function (dbGame) {
       res.json(dbGame);
     });
@@ -156,6 +160,8 @@ module.exports = function (app) {
 
         // Sets a UserTask to done and increments the UserGame's points by the Task's points.
         app.put("/api/users/:user_id/tasks/:task_id", function (req, res) {
+          console.log(res.cookie("userId"));
+          console.log(localStorage.getItem("userId"))
           if (req.body.task_done) {
             db.UserTask.findOne({
               where: {

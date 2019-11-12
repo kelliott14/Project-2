@@ -144,3 +144,8 @@ h2{
   width: 100vw;
 }
 
+.modal-dialog-centered::before {
+  display: block;
+  height: calc(100vh - (.5rem * 2));
+  content: "";
+}

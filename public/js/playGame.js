@@ -8,4 +8,12 @@ $(document).ready(function() {
     console.log("clicked");
     $("#playGameTaskItemModal").modal("show");
   });
+
+  
+
+
+
+
+
+
 });

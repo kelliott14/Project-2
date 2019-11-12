@@ -18,7 +18,7 @@
         <a class="nav-link" href="/dashboard">User Dashboard</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="/api/games">Choose a Game <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/chooseGame">Choose a Game <span class="sr-only">(current)</span></a>
       </li>
     </ul>
   </div>
@@ -28,7 +28,7 @@
   <div class="container">
   <h1>Choose a Game</h1>
     <div class="row">
-      <div class="card-columns">
+      <div class="card-columns gameListColumns">
         {{#each games}}
         <div class="card text-white mb-3 chooseGameCard" data-id="{{this.id}}">
           <div class="card-body">
@@ -43,7 +43,7 @@
   </div>
 
   <div class="modal" tabindex="-1" role="dialog" id="chooseGameSelectedGame">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title">You've selected:</h1>
@@ -53,7 +53,7 @@
       </div>
       <div class="modal-body">
         <p class="text-center" id="chooseGameModalTitle"></p>
-        <p class="text-center" id="chooseGameModalTime">You have 24hrs to complete</p>
+        <p class="text-center" id="chooseGameModalTime"></p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn" id="chooseGameStartGame">Start Game</button>

@@ -2,10 +2,10 @@
 var db = require("../models");
 
 module.exports = function(app) {
-  // Get all games
+  // Get all games: user choosing a game to play
   app.get("/api/games", function(req, res) {
     db.Game.findAll({}).then(function(dbGame) {
-      res.render("chooseGame", { games: dbGame });
+      res.json(dbGame);
     });
   });
 
@@ -21,7 +21,7 @@ module.exports = function(app) {
     });
   });
 
-  // Saving a new game
+  // Saving a new game. Admin creating a new game.
   app.post("/api/games", function(req, res) {
     db.Game.create({
       title: req.body.title,

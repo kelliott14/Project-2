@@ -136,3 +136,7 @@ h2{
 .progress-bar{
   background-color: #374050;
 }
+
+#errorFox{
+  width: 32rem;
+}

@@ -16,6 +16,11 @@ module.exports = function (app) {
     res.render("chooseGame");
   });
 
+  // users' games list
+  app.get("/usersGames", function (req, res) {
+    res.render("usersGames");
+  });
+
   // play game
   app.get("/playGame", function (req, res) {
     res.render("playGame");

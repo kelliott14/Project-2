@@ -12,6 +12,7 @@ h1{
   margin-bottom: 1rem;
   font-family: 'Jacques Francois Shadow', cursive;
   font-size: 2.5rem;
+  width: 100vh;
 }
 
 h2{
@@ -19,6 +20,7 @@ h2{
   margin-bottom: 1rem;
   font-family: 'Jacques Francois Shadow', cursive;
   font-size: 2rem;
+  width: 100vh;
 }
 
 .chooseGameCardTitles{
@@ -44,9 +46,7 @@ h2{
   border-radius: 15px;
 }
 
-#chooseGameSelectedGame{
-  padding-top: 12rem;
-}
+
 
 .modal-title{
   font-size: 1.5rem;
@@ -70,7 +70,8 @@ h2{
   background-color: #ffc938;
 }
 
-#secondPlaceBadge{
+#secondPlaceBadge,
+.chooseGameCard{
   background-color: #2a8e9d;
 }
 
@@ -95,7 +96,7 @@ h2{
 
 .taskBadge{
   background-color: white;
-  color: white;
+  color: #374050;
   border: 5px solid #374050;
   height: 3rem;
   width: 3rem;
@@ -111,6 +112,40 @@ h2{
 .playGameTimeRemaining,
 .playGameTasks,
 .playGameGameScore,
-.playGameLeaderboard{
+.playGameLeaderboard,
+#taskAdd,
+.activateGame{
   margin-bottom: 1rem;
+}
+
+#dashboardUsernameDisplay{
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.openGameBadge,
+.closedGameBadge{
+  float: right;
+}
+
+.progress{
+  clear: both;
+}
+
+.progress-bar{
+  background-color: #374050;
+}
+
+#errorFox{
+  width: 32rem;
+}
+
+.modal{
+  width: 100vw;
+}
+
+.modal-dialog-centered::before {
+  display: block;
+  height: calc(100vh - (.5rem * 2));
+  content: "";
 }

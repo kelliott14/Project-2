@@ -23,10 +23,5 @@ module.exports = function (sequelize, DataTypes) {
       // }
     }
   });
-  Game.create({
-    title: "Test Game",
-    draft_status: true,
-    ends_at: Date.now()
-  });
   return Game;
 };

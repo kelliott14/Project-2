@@ -1,38 +1,61 @@
 var db = require("../models");
+var jwt = require('jsonwebtoken');
+var auth = require('../auth/auth');
 
 module.exports = function (app) {
-  // login
-  app.get("/", function (req, res) {
-    res.render("index");
-  });
+    // login
+    app.get("/", function (req, res) {
+        res.render("index", {
+            user: req.user
+        });
+    });
 
-  // dashboard
-  app.get("/dashboard", function (req, res) {
-    res.render("dashboard");
-  });
+    app.post("/api/login", function (req, res) {
+        db.User.findOne({
+            where: {
+                user_name: req.body.userLogin
+            }
+        }).then(function (results) {
+            console.log(results);
+            if (results && req.body.userPassword == results.password) {
+                var token = jwt.sign({ user: results.id }, 'secret', { expiresIn: 10000000 });
+                res.cookie('token', token);
+                res.redirect('/dashboard');
+            } else {
+                res.render('index', {
+                    message: 'authentication error'
+                })
+            }
+        })
+    });
 
-  // game list
-  app.get("/chooseGame", function (req, res) {
-    res.render("chooseGame");
-  });
+    // dashboard
+    app.get("/dashboard", auth, function (req, res) {
+        res.render("dashboard");
+    });
 
-  // play game
-  app.get("/playGame", function (req, res) {
-    res.render("playGame");
-  });
+    // game list
+    app.get("/chooseGame", auth, function (req, res) {
+        res.render("chooseGame");
+    });
 
-  // admin game list
-  app.get("/adminGameList", function (req, res) {
-    res.render("adminGameList");
-  });
+    // play game
+    app.get("/playGame", auth, function (req, res) {
+        res.render("playGame");
+    });
 
-  // admin edit
-  app.get("/adminEdit", function (req, res) {
-    res.render("adminEdit");
-  });
+    // admin game list
+    app.get("/adminGameList", auth, function (req, res) {
+        res.render("adminGameList");
+    });
 
-  // Render 404 page for any unmatched routes
-  app.get("*", function (req, res) {
-    res.render("404");
-  });
+    // admin edit
+    app.get("/adminEdit", auth, function (req, res) {
+        res.render("adminEdit");
+    });
+
+    // Render 404 page for any unmatched routes
+    app.get("*", function (req, res) {
+        res.render("404");
+    });
 };

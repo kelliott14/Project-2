@@ -2,41 +2,15 @@ $(document).ready(function() {
   /* eslint-disable prettier/prettier */
   //modal
   $(".card-body").on("click", function() {
+    var gameTitle = $(this).children("h4").text();
+    var gameTime = $(this).children("h5").text();
+    $("#chooseGameModalTitle").text(gameTitle);
+    $("#chooseGameModalTime").text("You have " + gameTime + "to complete");
+    
     $("#chooseGameSelectedGame").modal("show");
+
   });
 
-  $("#viewLeaderboardModal").on("click", function() {
-    console.log("clicked");
-    $("#leaderBoardModal").modal("show");
-  });
-
-  $(".taskBadge").on("click", function() {
-    console.log("clicked");
-    $("#playGameTaskItemModal").modal("show");
-  });
-
-  $("#taskAdd").on("click", function() {
-    console.log("clicked");
-    $("#addEditTask").modal("show");
-  });
-
-  $(".activateGame").on("click", function() {
-    console.log("clicked");
-    $("#activateGame").modal("show");
-  });
-
-  //   var games;
-  //   //function to call the games data from the db
-  //   function getGames() {
-  //     $.get("/api/games", function(data) {
-  //       games = data;
-        
-  //       createGameCards(games);
-  //     });
-  //   }
-  //   //function to create a card for each game
-  //   function createGameCards(games) {
-      
-//   }
+  
 });
 

@@ -46,9 +46,7 @@ h2{
   border-radius: 15px;
 }
 
-#chooseGameSelectedGame{
-  padding-top: 12rem;
-}
+
 
 .modal-title{
   font-size: 1.5rem;
@@ -72,7 +70,8 @@ h2{
   background-color: #ffc938;
 }
 
-#secondPlaceBadge{
+#secondPlaceBadge,
+.chooseGameCard{
   background-color: #2a8e9d;
 }
 
@@ -140,3 +139,8 @@ h2{
 #errorFox{
   width: 32rem;
 }
+
+.modal{
+  width: 100vw;
+}
+

@@ -28,41 +28,15 @@
   <div class="container">
   <h1>Choose a Game</h1>
     <div class="row">
-      <div class="col-sm-6 card-deck">
-
-        <div class="card text-white mb-3" style="max-width: 18rem; background-color: #2a8e9d;">
+      <div class="card-columns">
+        {{#each games}}
+        <div class="card text-white mb-3 chooseGameCard" data-id="{{this.id}}">
           <div class="card-body">
-            <h4 class="card-title chooseGameCardTitles">Game 1</h4>
-            <h5 class="card-title chooseGameCardTime">24hrs</h5>
+            <h4 class="card-title chooseGameCardTitles">{{this.title}}</h4>
+            <h5 class="card-title chooseGameCardTime">{{this.ends_at}}</h5>
           </div>
       </div>
-
-      <div class="card text-white mb-3" style="max-width: 18rem; background-color: #ff5245;">
-          <div class="card-body">
-            <h4 class="card-title chooseGameCardTitles">Game 2</h4>
-            <h5 class="card-title chooseGameCardTime">48hrs</h5>
-          </div>
-      </div>
-
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-sm-6 card-deck">
-
-        <div class="card text-white mb-3" style="max-width: 18rem; background-color: #374050;">
-          <div class="card-body">
-            <h4 class="card-title chooseGameCardTitles">Game 3</h4>
-            <h5 class="card-title chooseGameCardTime">4hrs</h5>
-          </div>
-      </div>
-
-      <div class="card text-white mb-3"  style="max-width: 18rem; background-color: #ffc938;">
-          <div class="card-body" data-toggle="modal" data-target="#exampleModal" href="#">
-            <h4 class="card-title chooseGameCardTitles">Game 4</h4>
-            <h5 class="card-title chooseGameCardTime">1.5hrs</h5>
-          </div>
-      </div>
+      {{/each}}
 
       </div>
     </div>
@@ -78,8 +52,8 @@
         </button>
       </div>
       <div class="modal-body">
-        <p class="text-center">Game 1</p>
-        <p class="text-center">You have 24hrs to complete</p>
+        <p class="text-center" id="chooseGameModalTitle"></p>
+        <p class="text-center" id="chooseGameModalTime">You have 24hrs to complete</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn" id="chooseGameStartGame">Start Game</button>

@@ -5,7 +5,8 @@ module.exports = function(app) {
   // Get all games
   app.get("/api/games", function(req, res) {
     db.Game.findAll({}).then(function(dbGame) {
-      res.json(dbGame);
+      res.render("chooseGame", { games: dbGame });
+      console.log(dbGame)
     });
   });
 

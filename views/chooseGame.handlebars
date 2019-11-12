@@ -24,20 +24,10 @@
   </div>
 </nav>
 
-{{!-- Using static data only - this will need to be changed to JS once db is up --}}
   <div class="container">
   <h1>Choose a Game</h1>
     <div class="row">
       <div class="card-columns gameListColumns">
-        {{#each games}}
-        <div class="card text-white mb-3 chooseGameCard" data-id="{{this.id}}">
-          <div class="card-body">
-            <h4 class="card-title chooseGameCardTitles">{{this.title}}</h4>
-            <h5 class="card-title chooseGameCardTime">{{this.ends_at}}</h5>
-          </div>
-      </div>
-      {{/each}}
-
       </div>
     </div>
   </div>

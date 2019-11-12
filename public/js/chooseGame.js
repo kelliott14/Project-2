@@ -16,7 +16,7 @@ $(document).ready(function() {
 
   });
 
-  $(".card-body").on("click", function() {
+  $("body").on("click", ".card-body", function() {
     var gameTitle = $(this).children("h4").text();
     var gameTime = $(this).children("h5").text();
     $("#chooseGameModalTitle").text(gameTitle);

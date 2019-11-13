@@ -19,14 +19,28 @@ $(document).ready(function() {
   $("body").on("click", ".card-body", function() {
     var gameTitle = $(this).children("h4").text();
     var gameTime = $(this).children("h5").text();
+    // eslint-disable-next-line camelcase
+    var gameID = {game_id: $(this).parent().attr("data-id")}
+    console.log(gameID);
+    var thisUserID = 1;
     $("#chooseGameModalTitle").text(gameTitle);
     $("#chooseGameModalTime").text("You have " + gameTime + "to complete");
     
     $("#chooseGameSelectedGame").modal("show");
 
+    $("#chooseGameStartGame").on("click", function() {
+      console.log(gameID);
+      $.ajax("/api/users/" + thisUserID + "/joingame", {
+        type: "PUT",
+        data: gameID
+      }).then(
+        function() {
+          window.location.replace("/playGame");
+        }
+      );
+    });
   });
 
-  
   
 });
 

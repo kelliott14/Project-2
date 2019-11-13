@@ -109,9 +109,9 @@ module.exports = function (app) {
         // app.post("/api/login", function(req, res) {});
 
         // Joins a game and copies all tasks of that game for that user.
-        // Request: body {task_id: number}
+        // Request: body {"game_id": number}
         // Response: either existing UserGame or newly joined UserGame
-        app.put("/api/users/:user_id/joingame", function (req, res) {
+        app.post("/api/users/:user_id/joingame", function (req, res) {
           db.UserGame.findOne({
             where: {
               user_id: req.params.user_id,

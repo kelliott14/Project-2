@@ -25,14 +25,27 @@ module.exports = function(app) {
                 userLoggedIn.setId(results.id);
                 // console.log(results.id);
                 res.cookie("userId", results.id);
-                // localStorage.setItem("userId", results.id)
                 res.render("dashboard");
             } else {
+                console.log("error logging in");
                 res.render("index", {
                     message: "authentication error"
                 });
             }
         });
+    });
+
+    app.put("/api/register", function(req, res) {
+        db.User.create({
+                user_name: req.body.createName,
+                password: req.body.createPassword
+                    // admin :
+            })
+            .then(function(dbPost) {
+                console.log(dbPost);
+                // res.json(dbPost)
+                // console.log(`User (${dbPost.user_name}) has been created.`)
+            });
     });
 
     // dashboard

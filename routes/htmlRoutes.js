@@ -36,7 +36,10 @@ module.exports = function (app) {
 
   // game list
   app.get("/chooseGame", auth, function (req, res) {
-    res.render("chooseGame");
+    // db.Game.findAll({}).then(function (dbGames) {
+    //   res.render("chooseGame", {games: dbGames});
+      res.render("chooseGame");
+    // });
   });
 
   // play game

@@ -2,79 +2,38 @@
 
   <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #F7F6F4;">
     <a class="navbar-brand">
-      <img src="/assets/foxlogonobg.png" width="30" height="30" alt="">
+        <img src="/assets/foxlogonobg.png" width="30" height="30" alt="">
     </a>
 
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="/">Home </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/dashboard">User Dashboard</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/chooseGame">Choose a Game</a>
-      </li>
-    </ul>
-  </div>
-</nav>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/">Home </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/dashboard">User Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/chooseGame">Choose a Game</a>
+            </li>
+        </ul>
+    </div>
+  </nav>
 
   <div class="container">
-  <h1>Add a Game</h1>
-    <a type="button" class="btn btn-lg btn-block" role="button" href="/adminEdit" id="adminOnlyButton">Add Game</a>
-{{!-- Using static data only - this will need to be changed to JS once db is up --}}
-  <h1>Edit a Game</h1>
-    <div class="row">
-      <div class="col-sm-6 card-deck">
-
-        <div class="card text-white mb-3" style="max-width: 18rem; background-color: #2a8e9d;">
-          <div class="card-body">
-            <h4 class="card-title editGameCardTitle">Game 1</h4>
-            <h5 class="card-title">Edit</h5>
-            <h5 class="card-title editGameCardStatus">Active</h5>
-          </div>
+    <h1>Add a Game</h1>
+      <a type="button" class="btn btn-lg btn-block" role="button" id="adminOnlyButton">Add Game</a>
+    <h1>Edit a Game</h1>
+      <div class="row">
+        <div class="col-sm-6 card-columns gameListColumns"></div>
       </div>
-
-      <div class="card text-white mb-3" style="max-width: 18rem; background-color: #ff5245;">
-          <div class="card-body">
-            <h4 class="card-title editGameCardTitle">Game 2</h4>
-            <h5 class="card-title">Edit</h5>
-            <h5 class="card-title editGameCardStatus">Draft</h5>
-          </div>
-      </div>
-
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-sm-6 card-deck">
-
-        <div class="card text-white mb-3" style="max-width: 18rem; background-color: #374050;">
-          <div class="card-body">
-            <h4 class="card-title editGameCardTitle">Game 2</h4>
-            <h5 class="card-title">Edit</h5>
-            <h5 class="card-title editGameCardStatus">Active</h5>
-          </div>
-      </div>
-
-      <div class="card text-white mb-3"  style="max-width: 18rem; background-color: #ffc938;">
-          <div class="card-body" data-toggle="modal" data-target="#exampleModal" href="#">
-            <h4 class="card-title editGameCardTitle">Game 2</h4>
-            <h5 class="card-title">Edit</h5>
-            <h5 class="card-title editGameCardStatus">Draft</h5>
-          </div>
-      </div>
-
-      </div>
-    </div>
   </div>
-
-
 </div>
+
+<script src="/js/adminGameList.js"></script>
 
 

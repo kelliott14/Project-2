@@ -149,3 +149,7 @@ h2{
   height: calc(100vh - (.5rem * 2));
   content: "";
 }
+
+.editGameCard{
+  background-color: #ffc938;
+}

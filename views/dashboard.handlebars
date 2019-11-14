@@ -25,7 +25,7 @@
     <div class="container">
         <h1>My Dashboard</h1>
         <h2 id="dashboardUsernameDisplay">User Name</h2>
-
+        {{!-- user id input --}}
         <a type="button" class="btn btn-lg btn-block" role="button" href="/chooseGame">Start New Game</a>
         <a type="button" class="btn btn-lg btn-block" role="button" href="/adminGameList" id="adminOnlyButton">Edit/Add
             Game</a>
@@ -34,7 +34,7 @@
         <div class="row">
             <div class="col-sm-6 card-deck">
                 <h2>Open</h2>
-
+                {{!-- static data - to be updated --}}
                 <div class="card text-white mb-3" style="max-width: 18rem; background-color: #2a8e9d;">
                     <div class="card-body">
                         <h4 class="card-title chooseGameCardTitles">Game 1</h4>
@@ -103,3 +103,5 @@
     </div>
 
 </div>
+
+<script src="/js/dashboard.js"></script>

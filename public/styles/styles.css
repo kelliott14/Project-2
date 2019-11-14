@@ -1,6 +1,6 @@
 body{
   background-color: #F7F6F4;
-  font-family: 'Open Sans Condensed', sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 .list-group-item {
@@ -10,7 +10,7 @@ body{
 h1{
   margin-top: 0.75rem;
   margin-bottom: 1rem;
-  font-family: 'Jacques Francois Shadow', cursive;
+  font-family: 'Righteous', cursive;
   font-size: 2.5rem;
   width: 100vh;
 }
@@ -18,7 +18,7 @@ h1{
 h2{
   margin-top: 0.75rem;
   margin-bottom: 1rem;
-  font-family: 'Jacques Francois Shadow', cursive;
+  font-family: 'Righteous', cursive;
   font-size: 2rem;
   width: 100vh;
 }
@@ -46,13 +46,21 @@ h2{
   border-radius: 15px;
 }
 
+.flex-xl-nowrap{
+  padding-left: 1rem;
+}
 
+.draftIcon{
+  float: right;
+}
 
 .modal-title{
   font-size: 1.5rem;
 }
 
-.btn{
+.btn,
+#adminOnlyButton,
+#activateGame{
   background-color: #ff5245;
   color: white;
 }
@@ -70,8 +78,7 @@ h2{
   background-color: #ffc938;
 }
 
-#secondPlaceBadge,
-.chooseGameCard{
+#secondPlaceBadge{
   background-color: #2a8e9d;
 }
 
@@ -137,15 +144,21 @@ h2{
 }
 
 #errorFox{
-  width: 32rem;
+  width: 20rem;
 }
 
-.modal{
-  width: 100vw;
+.editGameCard{
+  background-color: #ffc938;
 }
 
-.modal-dialog-centered::before {
-  display: block;
-  height: calc(100vh - (.5rem * 2));
-  content: "";
+.indexLoginForm,
+.myGames{
+  padding-top: 2rem;
+}
+
+
+@media only screen and (max-width: 400px) {
+  #welcomeHeader {
+    font-size: 1.8rem;
+  }
 }

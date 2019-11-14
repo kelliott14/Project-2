@@ -11,9 +11,6 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item ">
-        <a class="nav-link" href="/">Home </a>
-      </li>
       <li class="nav-item">
         <a class="nav-link" href="/dashboard">User Dashboard</a>
       </li>
@@ -25,9 +22,9 @@
 </nav>
 
 {{!-- Using static data only - this will need to be changed to JS once db is up --}}
-  <div class="container">
-    <h1>Game 1</h1>
-        <div class="row">
+  <div class="container-fluid">
+        <div class="row flex-xl-nowrap">
+          <h1>Game 1</h1>
             <div class="col-sm-12">
                 <div class="card playGameTimeRemaining">
                     <div class="card-body">
@@ -37,7 +34,7 @@
                 </div>
             </div>
         </div>
-    <div class="row">
+    <div class="row flex-xl-nowrap">
         <div class="col-sm-12">
             <div class="playGameTasks">
                 <h4>Tasks</h4>
@@ -55,7 +52,7 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="row flex-xl-nowrap">
         <div class="col-sm-12">
             <div class="card playGameGameScore">
                 <div class="card-body">
@@ -67,7 +64,7 @@
     </div>
  
 
-    <div class="row">
+    <div class="row flex-xl-nowrap">
         <div class="col-sm-12">
             <div class="card playGameLeaderboard">
                 <button type="button" class="btn btn-lg btn-block" data-toggle="modal" id="viewLeaderboardModal">
@@ -122,8 +119,8 @@
     </div>
  </div>
 
-<div class="modal" tabindex="-1" role="dialog" id="playGameTaskItemModal">
-  <div class="modal-dialog" role="document">
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="taskItemModalCenterTitle" aria-hidden="true" id="playGameTaskItemModal">
+  <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title">Task 1</h1>
@@ -132,7 +129,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <h2 class="text-center">Task Title</h2>
+        <h2 class="modal-title">Task Title</h2>
         <p class="text-centre">This is where the task description will go. 
             And go and go and go and go and go and go and go and go  and go and go and go </p>
       </div>
@@ -146,4 +143,5 @@
 
 </div>
 
+<script src="/js/playGame.js"></script>
 

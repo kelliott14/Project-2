@@ -58,7 +58,9 @@ h2{
   font-size: 1.5rem;
 }
 
-.btn{
+.btn,
+#adminOnlyButton,
+#activateGame{
   background-color: #ff5245;
   color: white;
 }

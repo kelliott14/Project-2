@@ -27,7 +27,7 @@ module.exports = function (app) {
     db.Game.create({
       title: req.body.title,
       draft_status: req.body.draft_status,
-      ends_at: req.body.ends_at
+      game_length: req.body.game_length
     }).then(function (dbGame) {
       res.json(dbGame);
     });

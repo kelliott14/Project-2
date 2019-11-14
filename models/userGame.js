@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-module.exports = function (sequelize, DataTypes) {
+module.exports = function(sequelize, DataTypes) {
   var UserGame = sequelize.define("UserGame", {
     user_id: {
       type: DataTypes.INTEGER,
@@ -48,8 +48,5 @@ module.exports = function (sequelize, DataTypes) {
       // }
     }
   });
-  // UserGame.associate = function (models) {
-
-  // }
   return UserGame;
 };

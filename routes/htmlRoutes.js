@@ -48,21 +48,25 @@ module.exports = function (app) {
 
     // dashboard
     app.get("/dashboard", auth, function (req, res) {
-        // console.log(userLoggedIn.getId());
+        console.log(userLoggedIn.getId());
 
         db.UserGame.findAll({
+            attributes: ['game_id'],
             where: {
-                // user_id: userLoggedIn.getId(),
+                user_id: userLoggedIn.getId(),
                 game_finished: false
             },
-            include: [{ model: db.Game }]
         })
             .then(function (results) {
-                console.log(results);
-
+                var gameIdArray = [];
+                results.forEach(element => {
+                    gameIdArray.push(element.game_id)
+                });
+                db.Game.findAll({ where: { id: gameIdArray } }).then(function (results) {
+                    console.log(JSON.stringify(results));
+                    res.render('dashboard', { userGames: results });
+                })
             })
-
-        // res.render("dashboard");
     });
 
     // game list

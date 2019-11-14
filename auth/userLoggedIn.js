@@ -2,10 +2,10 @@
 var userLoggedIn = {
     id: null,
     username: null,
-    getId: function() {
+    getId: function () {
         return this.id;
     },
-    setId: function(id) {
+    setId: function (id) {
         this.id = id;
     }
 };

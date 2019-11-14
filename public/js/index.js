@@ -94,6 +94,14 @@ var handleDeleteBtnClick = function() {
   });
 };
 
+function calculateRemainingTime(startingTime, duration) {
+  var endingTime = moment(startingTime)
+    .add(duration, "hours")
+    .format();
+  var currentTime = moment().format();
+  return moment(endingTime).diff(moment(currentTime), "hours");
+}
+
 // Add event listeners to the submit and delete buttons
-$submitBtn.on("click", handleFormSubmit);
-$exampleList.on("click", ".delete", handleDeleteBtnClick);
+//$submitBtn.on("click", handleFormSubmit);
+//$exampleList.on("click", ".delete", handleDeleteBtnClick);

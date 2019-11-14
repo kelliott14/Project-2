@@ -30,6 +30,11 @@
       select a game.
       Happy scavenging!
     </p>
+    {{#if userCreated}}
+    <div>
+      <p style="color: blue;">User created succesfully. You can login</p>
+    </div>
+    {{/if}}
     <form class="indexLoginForm" action="/api/login" method="post">
       <div class="form-group">
         <h2>Login</h2>
@@ -45,7 +50,7 @@
       <button type="submit" class="btn" id="loginUserLogin">Login</button>
     </form>
 
-    <form class="indexCreateUserForm" action="/routes/authRoutes.js" method="post">
+    <form class="indexCreateUserForm" action="/api/register" method="post">
       <div class="form-group">
         <h2>Create new user</h2>
         <label for="userName">User Name</label>
@@ -60,6 +65,4 @@
       <button type="submit" class="btn" id="createUserCreate">Create Login</button>
     </form>
   </div>
-
-
 </div>

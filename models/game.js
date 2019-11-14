@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-module.exports = function (sequelize, DataTypes) {
+module.exports = function(sequelize, DataTypes) {
   var Game = sequelize.define("Game", {
     title: {
       type: DataTypes.STRING,
@@ -15,8 +15,8 @@ module.exports = function (sequelize, DataTypes) {
 
       // }
     },
-    ends_at: {
-      type: DataTypes.DATE,
+    game_length: {
+      type: DataTypes.INTEGER,
       allowNull: false
       // validate: {
 

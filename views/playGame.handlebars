@@ -24,11 +24,11 @@
 {{!-- Using static data only - this will need to be changed to JS once db is up --}}
   <div class="container-fluid">
         <div class="row flex-xl-nowrap">
-          <h1>Game 1</h1>
+          <h1>Game {{ games.TextRow }}</h1>
             <div class="col-sm-12">
                 <div class="card playGameTimeRemaining">
                     <div class="card-body">
-                        <h4>Time remaining in this game</h4>
+                        <div>Time remaining</div>
                         <h4>4hrs 13mins</h4>
                     </div>
                 </div>
@@ -57,7 +57,7 @@
             <div class="card playGameGameScore">
                 <div class="card-body">
                     <h4>Your Score</h4>
-                    <h4>65 points</h4>
+                    <h4>{{ games.dataValues.game_points }} points</h4>
                 </div>
             </div>
         </div>

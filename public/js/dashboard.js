@@ -1,5 +1,6 @@
 var backgroundColor = ["#2a8e9d", "#ff5245", "#374050", "#ffc938"];
 $(document).ready(function() {
+  //incorrect api route. Open Games
   $.get("/api/games", function(dbGames) {
     var j = 0;
     for (var i = 0; i < dbGames.length; i++) {
@@ -8,18 +9,25 @@ $(document).ready(function() {
       );
       $(eachCard).attr("data-id", dbGames[i].id);
       $(eachCard).html(
-        "<div class='card-body'><h4 class='card-title chooseGameCardTitles'>" +
+        "<div class='card-body'><h4 class='card-title dashboardGameCardTitles'>" +
           dbGames[i].title +
-          "</h4><h5 class='card-title chooseGameCardTime'>" +
-          dbGames[i].ends_at +
-          "</h5></div>"
+          "<span class='badge openGameBadge'>" +
+          timeLeft +
+          " left</span>" +
+          "</h5><div class='progress'><div class='progress-bar' role='progressbar' style='width: " +
+          widthPercent +
+          "aria-valuenow=" +
+          valueNow +
+          "aria-valuemin='0' aria-valuemax='100'>" +
+          statusBar +
+          "</div>"
       );
 
       if (j === 4) {
         j = 0;
       }
       $(eachCard).css("background-color", backgroundColor[j]);
-      $(".gameListColumns").append(eachCard);
+      $(".dashboardOpen").append(eachCard);
       j++;
     }
   });

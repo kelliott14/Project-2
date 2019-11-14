@@ -40,7 +40,8 @@ $(document).ready(function() {
         data: gameID
       }).then(
         function(data) {
-          window.location.replace("/playGame/" + data);
+          console.log(data.id)
+          window.location.replace("/playGame/" + data.id);
           //api route to display /playGame for the individual game?
         }
       );

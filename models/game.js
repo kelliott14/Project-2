@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-module.exports = function (sequelize, DataTypes) {
+module.exports = function(sequelize, DataTypes) {
   var Game = sequelize.define("Game", {
     title: {
       type: DataTypes.STRING,

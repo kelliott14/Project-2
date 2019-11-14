@@ -12,6 +12,7 @@ module.exports = function (app) {
     });
 
     app.post("/api/login", function (req, res) {
+        console.log("LOGIN");
         db.User.findOne({
             where: {
                 user_name: req.body.userLogin
@@ -36,24 +37,32 @@ module.exports = function (app) {
         });
     });
 
-    app.put("/api/register", function (req, res) {
-        console.log('test');
+    app.post("/api/register", function (req, res) {
         db.User.create({
             user_name: req.body.createName,
             password: req.body.createPassword
-            // admin :
-        })
-            .then(function (dbPost) {
-                console.log(dbPost);
-                // res.json(dbPost)
-                // console.log(`User (${dbPost.user_name}) has been created.`)
-            });
+        }).then(function (dbPost) {
+            res.render("index", { userCreated: true });
+        });
     });
 
     // dashboard
     app.get("/dashboard", auth, function (req, res) {
         // console.log(userLoggedIn.getId());
-        res.render("dashboard");
+
+        db.UserGame.findAll({
+            where: {
+                // user_id: userLoggedIn.getId(),
+                game_finished: false
+            },
+            include: [{ model: db.Game }]
+        })
+            .then(function (results) {
+                console.log(results);
+
+            })
+
+        // res.render("dashboard");
     });
 
     // game list

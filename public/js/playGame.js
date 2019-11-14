@@ -11,5 +11,5 @@ $(document).ready(function() {
   // /api/games/:id
 
   //gameID = url.split
-  console.log(url)
+  console.log(url);
 });

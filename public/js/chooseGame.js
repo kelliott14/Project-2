@@ -30,7 +30,7 @@ $(document).ready(function() {
     var thisUserID = 1;
     //userID update
     $("#chooseGameModalTitle").text(gameTitle);
-    $("#chooseGameModalTime").text("You have " + gameTime + "to complete");
+    $("#chooseGameModalTime").text("You have " + gameTime + " to complete");
     
     $("#chooseGameSelectedGame").modal("show");
 

@@ -5,3 +5,6 @@ htmlRoutes.js
 apiRoutes.js
 passport.js
 auth.js
+userLoggedIn.js
+user.js
+task.js

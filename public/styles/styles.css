@@ -46,6 +46,9 @@ h2{
   border-radius: 15px;
 }
 
+.flex-xl-nowrap{
+  padding-left: 1rem;
+}
 
 
 .modal-title{
@@ -137,16 +140,6 @@ h2{
 
 #errorFox{
   width: 32rem;
-}
-
-.modal{
-  width: 100vw;
-}
-
-.modal-dialog-centered::before {
-  display: block;
-  height: calc(100vh - (.5rem * 2));
-  content: "";
 }
 
 .editGameCard{

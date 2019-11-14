@@ -30,7 +30,7 @@ $(document).ready(function() {
 
     $("#chooseGameStartGame").on("click", function() {
       $.ajax("/api/users/" + thisUserID + "/joingame", {
-        type: "PUT",
+        type: "POST",
         data: gameID
       }).then(
         function() {

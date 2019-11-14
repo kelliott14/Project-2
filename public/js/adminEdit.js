@@ -46,4 +46,22 @@ $(document).ready(function() {
       });
     });
   }
+
+  $("#gameEditAdd").on("click", function(gameID) {
+    var newGame = {
+      title: $("#gameTitle").val().trim(),
+      draft_status: true,
+      ends_at: 
+    }
+    if (!gameID) {
+      $.ajax("/api/games", {
+        type: "PUT",
+        data: newGame
+      }).then(
+        function() {
+          window.location.replace("/")
+        }
+      )
+    }
+  })
 });

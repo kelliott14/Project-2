@@ -97,11 +97,22 @@ module.exports = function(app) {
   //To do: wait for passport.js
   // app.post("/api/login", function(req, res) {});
 
-        // Joins a game and copies all tasks of that game for that user.
-        // Request: body {"game_id": number}
-        // Response: either existing UserGame or newly joined UserGame
-        app.post("/api/users/:user_id/joingame", function (req, res) {
-          db.UserGame.findOne({
+  // Joins a game and copies all tasks of that game for that user.
+  // Request: body {"game_id": number}
+  // Response: either existing UserGame or newly joined UserGame
+  app.post("/api/users/:user_id/joingame", function(req, res) {
+    db.UserGame.findOne({
+      where: {
+        user_id: req.params.user_id,
+        game_id: req.body.game_id
+      }
+    }).then(function(dbUserGame) {
+      if (!dbUserGame) {
+        db.UserGame.create({
+          user_id: req.params.user_id,
+          game_id: req.body.game_id
+        }).then(function(newDbUserGame) {
+          db.Task.findAll({
             where: {
               game_id: req.body.game_id
             }

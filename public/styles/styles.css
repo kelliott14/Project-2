@@ -50,6 +50,9 @@ h2{
   padding-left: 1rem;
 }
 
+.draftIcon{
+  float: right;
+}
 
 .modal-title{
   font-size: 1.5rem;

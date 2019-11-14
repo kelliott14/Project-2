@@ -1,19 +1,15 @@
 $(document).ready(function() {
+  var url = window.location.search;
+  var gameID;
   $("#viewLeaderboardModal").on("click", function() {
-    console.log("clicked");
     $("#leaderBoardModal").modal("show");
   });
 
   $(".taskBadge").on("click", function() {
-    console.log("clicked");
     $("#playGameTaskItemModal").modal("show");
   });
+  // /api/games/:id
 
-  
-
-
-
-
-
-
+  //gameID = url.split
+  console.log(url)
 });

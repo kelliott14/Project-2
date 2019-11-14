@@ -20,6 +20,7 @@ module.exports = function (app) {
       if (results && req.body.userPassword == results.password) {
         var token = jwt.sign({ user: results.id }, 'secret', { expiresIn: 10000000 });
         res.cookie('token', token);
+        console.log(token)
         res.redirect('/dashboard');
       } else {
         res.render('index', {

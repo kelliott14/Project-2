@@ -11,9 +11,6 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item ">
-        <a class="nav-link" href="/">Home </a>
-      </li>
       <li class="nav-item">
         <a class="nav-link" href="/dashboard">User Dashboard</a>
       </li>
@@ -24,28 +21,20 @@
   </div>
 </nav>
 
-{{!-- Using static data only - this will need to be changed to JS once db is up --}}
-  <div class="container">
-  <h1>Choose a Game</h1>
-    <div class="row">
-      <div class="card-columns gameListColumns">
-        {{#each games}}
-        <div class="card text-white mb-3 chooseGameCard" data-id="{{this.id}}">
-          <div class="card-body">
-            <h4 class="card-title chooseGameCardTitles">{{this.title}}</h4>
-            <h5 class="card-title chooseGameCardTime">{{this.ends_at}}</h5>
-          </div>
-      </div>
-      {{/each}}
-
-      </div>
+  <div class="container-fluid">
+    <div class="row flex-xl-nowrap">
+        <h1>Choose a Game</h1>
+    </div>
+    <div class="row flex-xl-nowrap">
+        <div class="card-columns gameListColumns">
+        </div>
     </div>
   </div>
 
-  <div class="modal" tabindex="-1" role="dialog" id="chooseGameSelectedGame">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
+  <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="chooseGameModalCenterTitle" aria-hidden="true" id="chooseGameSelectedGame">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+       <div class="modal-header">
         <h1 class="modal-title">You've selected:</h1>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -66,4 +55,4 @@
 
 </div>
 
-
+<script src="/js/chooseGame.js"></script>

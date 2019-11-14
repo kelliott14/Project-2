@@ -39,8 +39,8 @@ $(document).ready(function() {
         type: "POST",
         data: gameID
       }).then(
-        function() {
-          window.location.replace("/playGame");
+        function(data) {
+          window.location.replace("/playGame/" + data);
           //api route to display /playGame for the individual game?
         }
       );

@@ -1,28 +1,6 @@
 /* eslint-disable camelcase */
 module.exports = function(sequelize, DataTypes) {
   var UserGame = sequelize.define("UserGame", {
-    // user_id: {
-    //   type: DataTypes.INTEGER,
-    //   references: {
-    //     model: "users",
-    //     key: "id"
-    //   },
-    //   allowNull: false
-    //   // validate: {
-
-    //   // }
-    // },
-    // game_id: {
-    //   type: DataTypes.INTEGER,
-    //   references: {
-    //     model: "games",
-    //     key: "id"
-    //   },
-    //   allowNull: false
-    //   // validate: {
-
-    //   // }
-    // },
     game_points: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -48,9 +26,9 @@ module.exports = function(sequelize, DataTypes) {
       // }
     }
   });
-  UserGame.associate = function(models){
-    UserGame.belongsTo(models.User, {foreignKey: {allowNull: false}})
-    UserGame.belongsTo(models.Game, {foreignKey: {allowNull: false}})
+  UserGame.associate = function(models) {
+    UserGame.belongsTo(models.User, { foreignKey: { allowNull: false } });
+    UserGame.belongsTo(models.Game, { foreignKey: { allowNull: false } });
   };
   return UserGame;
 };

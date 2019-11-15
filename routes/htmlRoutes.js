@@ -76,10 +76,17 @@ module.exports = function (app) {
     });
 
     // play game
-    app.get("/playGame", auth, function (req, res) {
-        // console.log(userLoggedIn.getId());
-        res.render("playGame");
-    });
+    app.get("/playGame/:id", auth, function(req, res) {
+    db.sequelize
+      .query(
+        "SELECT * FROM foxhunt_db.usertasks inner join tasks on usertasks.task_id = tasks.id inner join games on tasks.game_id = games.id inner join usergames on games.id = usergames.game_id where usergames.id = " +
+          req.params.id
+      )
+      .then(function(result) {
+        console.log(result);
+        res.render("playGame", { games: result });
+      });
+  });
 
     // admin game list
     app.get("/adminGameList", auth, function (req, res) {

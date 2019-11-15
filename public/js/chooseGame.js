@@ -11,7 +11,7 @@ $(document).ready(function() {
       $(eachCard).attr("data-id", dbGames[i].id);
       $(eachCard).html("<div class='card-body'><h4 class='card-title chooseGameCardTitles'>"
         + dbGames[i].title + "</h4><h5 class='card-title chooseGameCardTime'>"
-        + dbGames[i].game_length + "</h5></div>");
+        + dbGames[i].game_length + " hrs to complete</h5></div>");
 
       if (j === 4) {
         j = 0;
@@ -30,7 +30,7 @@ $(document).ready(function() {
     var thisUserID = 1;
     //userID update
     $("#chooseGameModalTitle").text(gameTitle);
-    $("#chooseGameModalTime").text("You have " + gameTime + "to complete");
+    $("#chooseGameModalTime").text("You have " + gameTime);
 
     $("#chooseGameSelectedGame").modal("show");
 
@@ -39,8 +39,8 @@ $(document).ready(function() {
         type: "POST",
         data: gameID
       }).then(
-        function (data) {
-          window.location.replace("/playGame/" + data);
+        function(data) {
+          window.location.replace("/playGame/" + data.id);
           //api route to display /playGame for the individual game?
         }
       );

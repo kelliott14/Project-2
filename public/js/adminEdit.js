@@ -1,13 +1,11 @@
-$(document).ready(function () {
+$(document).ready(function() {
   var url = window.location.search;
   var gameID;
-  $("#taskAdd").on("click", function () {
-    console.log("clicked");
+  $("#taskAdd").on("click", function() {
     $("#addEditTask").modal("show");
   });
 
-  $(".activateGame").on("click", function () {
-    console.log("clicked");
+  $(".activateGame").on("click", function() {
     $("#activateGame").modal("show");
   });
 
@@ -19,7 +17,7 @@ $(document).ready(function () {
   }
 
   function getGames(gameID) {
-    $.get("/api/games/" + gameID, function (data) {
+    $.get("/api/games/" + gameID, function(data) {
       $("#gameTitle").text(data.title);
       //hours and mins??
       getTasks(gameID);
@@ -27,20 +25,20 @@ $(document).ready(function () {
   }
 
   function getTasks(gameID) {
-    $.get("/api/tasks/" + gameID, function (taskData) {
-      taskData.forEach(function (item) {
+    $.get("/api/tasks/" + gameID, function(taskData) {
+      taskData.forEach(function(item) {
         var eachCard = $(
           "<div class='card text-white mb-3 editTaskCard'></div>"
         );
         $(eachCard).attr("data-id", item.id);
         $(eachCard).html(
           "<div class='card-body'><h4 class='card-title editTaskCardTitle'>" +
-          item.title +
-          "</h4><h5 class='card-title editTaskCardDescription'>" +
-          item.description +
-          "</h5><h5 class = 'card-title editTaskCardPoints'>" +
-          item.points +
-          " points</h5></div>"
+            item.title +
+            "</h4><h5 class='card-title editTaskCardDescription'>" +
+            item.description +
+            "</h5><h5 class = 'card-title editTaskCardPoints'>" +
+            item.points +
+            " points</h5></div>"
         );
         $(".taskListColumns").append(eachCard);
       });
@@ -51,7 +49,7 @@ $(document).ready(function () {
   //   var newGame = {
   //     title: $("#gameTitle").val().trim(),
   //     draft_status: true,
-  //     game_length: 
+  //     game_length:
   //   }
   //   if (!gameID) {
   //     $.ajax("/api/games", {

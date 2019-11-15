@@ -20,11 +20,11 @@
     </ul>
   </div>
 </nav>
-
-{{!-- Using static data only - this will need to be changed to JS once db is up --}}
   <div class="container-fluid">
         <div class="row flex-xl-nowrap">
-          <h1>Game {{ games.TextRow }}</h1>
+          {{#with games.[0].[0]}}
+          <h1> {{this.title}} </h1>
+          {{/with}}
             <div class="col-sm-12">
                 <div class="card playGameTimeRemaining">
                     <div class="card-body">
@@ -38,16 +38,14 @@
         <div class="col-sm-12">
             <div class="playGameTasks">
                 <h4>Tasks</h4>
+                {{#each games.[0] }}
+                    {{#if task_done}}
               <span class="badge taskBadge complete">&#10004;</span>
-              <span class="badge taskBadge complete">&#10004;</span>
-              <span class="badge taskBadge complete">&#10004;</span>
-              <span class="badge taskBadge incomplete">4</span>
-              <span class="badge taskBadge incomplete">5</span>
-              <span class="badge taskBadge incomplete">6</span>
-              <span class="badge taskBadge incomplete">7</span>
-              <span class="badge taskBadge incomplete">8</span>
-              <span class="badge taskBadge incomplete">9</span>
-              <span class="badge taskBadge incomplete">10</span>
+              {{else}}
+              <span class="badge taskBadge incomplete">{{this.task_id}}</span>
+                    {{/if}}
+
+                {{/each}}
           </div>
       </div>
     </div>
@@ -57,7 +55,9 @@
             <div class="card playGameGameScore">
                 <div class="card-body">
                     <h4>Your Score</h4>
-                    <h4>{{ games.dataValues.game_points }} points</h4>
+                    {{#with games.[0].[0]}}
+                      <h4>{{ this.game_points }} points</h4>
+                      {{/with}}
                 </div>
             </div>
         </div>

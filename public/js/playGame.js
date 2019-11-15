@@ -1,8 +1,4 @@
 $(document).ready(function() {
-  var url = window.location.search;
-  var gameID;
- 
-
   $("#viewLeaderboardModal").on("click", function() {
     $("#leaderBoardModal").modal("show");
   });

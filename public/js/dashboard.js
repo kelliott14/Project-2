@@ -1,6 +1,6 @@
 var backgroundColor = ["#2a8e9d", "#ff5245", "#374050", "#ffc938"];
 $(document).ready(function() {
-  //incorrect api route. Open Games
+  //Open Games
   $.get("/api/games", function(dbGames) {
     var j = 0;
     for (var i = 0; i < dbGames.length; i++) {

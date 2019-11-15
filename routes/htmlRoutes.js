@@ -82,9 +82,9 @@ module.exports = function (app) {
           req.params.id
       )
       .then(function(result) {
-        console.log(result);
+        
         res.render("playGame", { games: result });
-        console.log(games)
+        
       });
   });
 

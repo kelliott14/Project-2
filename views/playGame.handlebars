@@ -40,9 +40,9 @@
                 <h4>Tasks</h4>
                 {{#each games.[0] }}
                     {{#if task_done}}
-              <span class="badge taskBadge complete" data-value="{{ this.TaskId }}">&#10004;</span>
+              <span class="badge taskBadge complete" data-value="{{ this.TaskId }}" task-done = {{this.task_done}}>&#10004;</span>
               {{else}}
-              <span class="badge taskBadge incomplete" data-value="{{ this.TaskId }}"> T </span>
+              <span class="badge taskBadge incomplete" data-value="{{ this.TaskId }}" task-done = {{this.task_done}}> T </span>
                     {{/if}}
 
                 {{/each}}

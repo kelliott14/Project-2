@@ -34,13 +34,19 @@ $(document).ready(function() {
 
   $(".taskBadge").on("click", function() {
     var thisTaskID = $(this).attr("data-value");
+    var doneValue = $(this).attr("task-done");
+    if (doneValue == 0) {
+      doneValue = true;
+    }else {
+      doneValue = false;
+    }
     $.ajax("/api/tasks/" + thisTaskID, {
       type: "GET"
     }).then(function(data) {
       $("#taskTitle").text(data.title);
       $("#taskDescription").text(data.description);
       $("#completeTaskItem").attr("data-value", thisTaskID);
-      $("#completeTaskItem").attr("done_value", data.task_done);
+      $("#completeTaskItem").attr("done_value", doneValue);
     });
 
     $("#playGameTaskItemModal").modal("show");
@@ -48,12 +54,12 @@ $(document).ready(function() {
 
   $("#completeTaskItem").on("click", function() {
     var thisTaskID = $(this).attr("data-value");
-
-    console.log(thisTaskID);
+    var doneValue = $(this).attr("done_value");
+    console.log(doneValue);
     $.ajax("/api/users/:user_id/tasks/" + thisTaskID, {
       type: "PUT",
       data: {
-        task_done: false
+        task_done: doneValue
       }
     }).then(function() {
       location.reload();

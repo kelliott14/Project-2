@@ -1,6 +1,7 @@
 /* eslint-disable camelcase */
 var db = require("../models");
 var userLoggedIn = require("../auth/userLoggedIn");
+
 module.exports = function(app) {
   // Get all games: user choosing a game to play
   app.get("/api/games", function(req, res) {
@@ -15,7 +16,7 @@ module.exports = function(app) {
       if (!dbGame) {
         res.status(404).send("Not found.");
       }
-      db.Task.findAll({ where: { id: req.params.id } }).then(function(dbTasks) {
+      db.Task.findAll({ where: { game_id: req.params.id } }).then(function(dbTasks) {
         res.json(Object.assign({ tasks: dbTasks }, dbGame.dataValues));
       });
     });
@@ -94,13 +95,11 @@ module.exports = function(app) {
     });
   });
 
-  //To do: wait for passport.js
-  // app.post("/api/login", function(req, res) {});
-
   // Joins a game and copies all tasks of that game for that user.
   // Request: body {"game_id": number}
   // Response: either existing UserGame or newly joined UserGame
   app.post("/api/users/:user_id/joingame", function(req, res) {
+    if (!userLoggedIn.getId() || userLoggedIn.getId() != req.params.user_id) res.status(403).send("Forbidden");
     db.UserGame.findOne({
       where: {
         UserId: userLoggedIn.getId(),
@@ -134,6 +133,7 @@ module.exports = function(app) {
 
   // Returns all tasks of all games a user has joined
   app.get("/api/users/:user_id/tasks", function(req, res) {
+    if (!userLoggedIn.getId() || userLoggedIn.getId() != req.params.user_id) res.status(403).send("Forbidden");
     db.UserTask.findAll({
       where: {
         UserId: userLoggedIn.getId()
@@ -145,6 +145,7 @@ module.exports = function(app) {
 
   // Sets a UserTask to done and increments the UserGame's points by the Task's points.
   app.put("/api/users/:user_id/tasks/:task_id", function(req, res) {
+    if (!userLoggedIn.getId() || userLoggedIn.getId() != req.params.user_id) res.status(403).send("Forbidden");
     if (req.body.task_done) {
       db.UserTask.findOne({
         where: {
@@ -206,5 +207,37 @@ module.exports = function(app) {
         }
       });
     }
+  });
+
+  app.get("/api/users/:user_id/games/:game_id", function(req, res) {
+    if (!userLoggedIn.getId() || userLoggedIn.getId() != req.params.user_id) res.status(403).send("Forbidden");
+    db.UserGame.findOne({
+      where: {
+        UserId: userLoggedIn.getId(),
+        GameId: req.params.game_id
+      }
+    }).then(function(dbUserGame) {
+      if (!dbUserGame) {
+        res.status(404).send("Not found.");
+      }
+      db.UserTask.findAll({
+        include: [{
+          model: db.Task,
+          where: {
+            game_id: req.params.game_id
+          }
+        }],
+        where: {
+          UserId: userLoggedIn.getId()
+        }
+      }).then(function(dbUserTasks) {
+        db.Game.findByPk(req.params.game_id).then(function(dbGame) {
+          if (!dbGame) {
+            res.status(500).send("No Game for UserGame");
+          }
+          res.json(Object.assign({ userTasks: dbUserTasks, game: dbGame }, dbUserGame.dataValues));
+        });
+      });
+    });
   });
 };

@@ -102,6 +102,7 @@ module.exports = function(app) {
   // Request: body {"game_id": number}
   // Response: either existing UserGame or newly joined UserGame
   app.post("/api/users/:user_id/joingame", function(req, res) {
+    if (!userLoggedIn.getId()) res.status(403).send("Forbidden");
     db.UserGame.findOne({
       where: {
         UserId: userLoggedIn.getId(),
@@ -135,6 +136,7 @@ module.exports = function(app) {
 
   // Returns all tasks of all games a user has joined
   app.get("/api/users/:user_id/tasks", function(req, res) {
+    if (!userLoggedIn.getId()) res.status(403).send("Forbidden");
     db.UserTask.findAll({
       where: {
         UserId: userLoggedIn.getId()
@@ -146,6 +148,7 @@ module.exports = function(app) {
 
   // Sets a UserTask to done and increments the UserGame's points by the Task's points.
   app.put("/api/users/:user_id/tasks/:task_id", function(req, res) {
+    if (!userLoggedIn.getId()) res.status(403).send("Forbidden");
     if (req.body.task_done) {
       db.UserTask.findOne({
         where: {

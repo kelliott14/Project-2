@@ -51,16 +51,16 @@ module.exports = function (app) {
         console.log(userLoggedIn.getId());
 
         db.UserGame.findAll({
-            attributes: ['game_id'],
+            attributes: ['GameId'],
             where: {
-                user_id: userLoggedIn.getId(),
+                UserId: userLoggedIn.getId(),
                 game_finished: false
             },
         })
             .then(function (results) {
                 var gameIdArray = [];
                 results.forEach(element => {
-                    gameIdArray.push(element.game_id)
+                    gameIdArray.push(element.GameId)
                 });
                 db.Game.findAll({ where: { id: gameIdArray } }).then(function (results) {
                     console.log(JSON.stringify(results));
@@ -79,7 +79,7 @@ module.exports = function (app) {
     app.get("/playGame/:id", auth, function(req, res) {
     db.sequelize
       .query(
-        "SELECT * FROM foxhunt_db.usertasks inner join tasks on usertasks.task_id = tasks.id inner join games on tasks.game_id = games.id inner join usergames on games.id = usergames.game_id where usergames.id = " +
+        "SELECT * FROM foxhunt_db.usertasks inner join tasks on usertasks.TaskId = tasks.id inner join games on tasks.game_id = games.id inner join usergames on games.id = usergames.GameId where usergames.id = " +
           req.params.id
       )
       .then(function(result) {

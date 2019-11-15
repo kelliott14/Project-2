@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 var db = require("../models");
-
+var userLoggedIn = require("../auth/userLoggedIn");
 module.exports = function(app) {
   // Get all games: user choosing a game to play
   app.get("/api/games", function(req, res) {
@@ -103,14 +103,14 @@ module.exports = function(app) {
   app.post("/api/users/:user_id/joingame", function(req, res) {
     db.UserGame.findOne({
       where: {
-        user_id: req.params.user_id,
-        game_id: req.body.game_id
+        UserId: userLoggedIn.getId(),
+        GameId: req.body.game_id
       }
     }).then(function(dbUserGame) {
       if (!dbUserGame) {
         db.UserGame.create({
-          user_id: req.params.user_id,
-          game_id: req.body.game_id
+          UserId: userLoggedIn.getId(),
+          GameId: req.body.game_id
         }).then(function(newDbUserGame) {
           db.Task.findAll({
             where: {
@@ -119,8 +119,8 @@ module.exports = function(app) {
           }).then(function(dbTasks) {
             dbTasks.forEach(function(dbTask) {
               db.UserTask.create({
-                user_id: req.params.user_id,
-                task_id: dbTask.id
+                UserId: userLoggedIn.getId(),
+                TaskId: dbTask.id
               });
             });
             res.json(newDbUserGame);
@@ -136,7 +136,7 @@ module.exports = function(app) {
   app.get("/api/users/:user_id/tasks", function(req, res) {
     db.UserTask.findAll({
       where: {
-        user_id: req.params.user_id
+        UserId: userLoggedIn.getId()
       }
     }).then(function(dbUserTasks) {
       res.json(dbUserTasks);
@@ -145,11 +145,12 @@ module.exports = function(app) {
 
   // Sets a UserTask to done and increments the UserGame's points by the Task's points.
   app.put("/api/users/:user_id/tasks/:task_id", function(req, res) {
+    console.log(userLoggedIn.getId());
     if (req.body.task_done) {
       db.UserTask.findOne({
         where: {
-          user_id: req.params.user_id,
-          task_id: req.params.task_id
+          UserId: userLoggedIn.getId(),
+          TaskId: req.params.task_id
         }
       }).then(function(dbUserTask) {
         if (!dbUserTask) {
@@ -158,8 +159,8 @@ module.exports = function(app) {
           if (!dbUserTask.task_done) {
             db.UserTask.update(req.body, {
               where: {
-                user_id: req.params.user_id,
-                task_id: req.params.task_id
+                UserId: userLoggedIn.getId(),
+                TaskId: req.params.task_id
               }
             }).then(function() {
               db.Task.findByPk(req.params.task_id).then(function(dbTask) {
@@ -168,8 +169,8 @@ module.exports = function(app) {
                 } else {
                   db.UserGame.findOne({
                     where: {
-                      user_id: req.params.user_id,
-                      game_id: dbTask.game_id
+                      UserId: userLoggedIn.getId(),
+                      GameId: dbTask.game_id
                     }
                   }).then(function(dbUserGame) {
                     if (!dbUserGame) {
@@ -181,15 +182,15 @@ module.exports = function(app) {
                         },
                         {
                           where: {
-                            user_id: req.params.user_id,
-                            game_id: dbTask.game_id
+                            UserId: userLoggedIn.getId(),
+                            GameId: dbTask.game_id
                           }
                         }
                       ).then(function() {
                         db.UserTask.findOne({
                           where: {
-                            user_id: req.params.user_id,
-                            task_id: req.params.task_id
+                            UserId: userLoggedIn.getId(),
+                            TaskId: req.params.task_id
                           }
                         }).then(function(updatedDbUserTask) {
                           res.json(updatedDbUserTask);

@@ -1,41 +1,46 @@
 <div id="playGame">
 
   <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #F7F6F4;">
-    <a class="navbar-brand">
-      <img src="/assets/foxlogonobg.png" width="30" height="30" alt="">
-    </a>
+      <a class="navbar-brand">
+        <img src="/assets/foxlogonobg.png" width="30" height="30" alt="">
+      </a>
 
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="/dashboard">User Dashboard</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/chooseGame">Choose a Game</a>
-      </li>
-    </ul>
-  </div>
-</nav>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/dashboard">User Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/chooseGame">Choose a Game</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
   <div class="container-fluid">
-        <div class="row flex-xl-nowrap">
-          {{#with games.[0].[0]}}
-          <h1 id="gameTitle" gameID="{{ this.GameId }}" usergameID="{{ this.id }}"> {{this.title}} </h1>
-          {{/with}}
-            <div class="col-sm-12">
-                <div class="card playGameTimeRemaining">
-                    <div class="card-body">
-                        <div>Time remaining</div>
-                        <h4 id="timeRemaining"></h4>
-                    </div>
-                </div>
-            </div>
-        </div>
     <div class="row flex-xl-nowrap">
-        <div class="col-sm-12">
+      
+        {{#with games.[0].[0]}}
+        <h1 id="gameTitle" gameID="{{ this.GameId }}" usergameID="{{ this.id }}"> {{this.title}} </h1>
+        {{/with}}
+      
+    </div>
+    <div class="row flex-xl-nowrap">
+      
+          <div class="card playGameTimeRemaining">
+              <div class="card-body">
+                  <div>Time remaining</div>
+                  <h4 id="timeRemaining"></h4>
+              </div>
+          </div>
+      
+    </div>
+    <div class="row flex-xl-nowrap">
+        
             <div class="playGameTasks">
                 <h4>Tasks</h4>
                 {{#each games.[0] }}
@@ -47,11 +52,11 @@
 
                 {{/each}}
           </div>
-      </div>
+      
     </div>
 
     <div class="row flex-xl-nowrap">
-        <div class="col-sm-12">
+        
             <div class="card playGameGameScore">
                 <div class="card-body">
                     <h4>Your Score</h4>
@@ -60,24 +65,23 @@
                       {{/with}}
                 </div>
             </div>
-        </div>
+        
     </div>
- 
 
     <div class="row flex-xl-nowrap">
-        <div class="col-sm-12">
+        
             <div class="card playGameLeaderboard">
                 <button type="button" class="btn btn-lg btn-block" data-toggle="modal" id="viewLeaderboardModal">
                     View Leaderboard
                 </button>   
             </div>
-        </div>
+        
     </div>
-
 </div>
+
 {{!-- Leaderboard modal --}}
-  <div class="modal" tabindex="-1" role="dialog" id="leaderBoardModal">
-    <div class="modal-dialog" role="document">
+  <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dashboardCenterTitle" aria-hidden="true" id="leaderBoardModal">
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title">Leaderboard: Game 1</h1>
@@ -89,24 +93,24 @@
                 <ul class="list-group">
                     <li class="list-group-item d-flex justify-content-between"> 
                         <span class="badge badge-pill" id="firstPlaceBadge">1st</span>
-                        Username
+                        Polly
                         <span class="badge badge-pill pointsBadge">200pts</span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between"> 
                         <span class="badge badge-pill" id="secondPlaceBadge">2nd</span>
-                        Username
-                        <span class="badge badge-pill pointsBadge">170pts</span>
+                        Carol
+                        <span class="badge badge-pill pointsBadge">180pts</span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between"> 
                         <span class="badge badge-pill" id="thirdPlaceBadge">3rd</span>
-                        Username
+                        George
                         <span class="badge badge-pill pointsBadge">110pts</span>
                     </li>
                 </ul>
                 <ul class="list-group">
                     <li class="list-group-item d-flex justify-content-between"> 
                         <span class="badge badge-pill" id="thisUserBadge">27th</span>
-                        this user
+                        You
                         <span class="badge badge-pill pointsBadge">65pts</span>
                     </li>
                 </ul>   

@@ -8,8 +8,6 @@ $(document).ready(function() {
   }
   var startTime;
   var thisGame = $("#gameTitle").attr("gameID");
-  var thisUsergame = $("#gameTitle").attr("usergameID");
-  console.log(thisGame)
   $.ajax("/api/users/:user_id/games/" + thisGame, {
     type: "GET",
     data: {
@@ -53,7 +51,6 @@ $(document).ready(function() {
   $("#completeTaskItem").on("click", function() {
     var thisTaskID = $(this).attr("data-value");
     var doneValue = $(this).attr("done_value");
-    console.log(doneValue);
     $.ajax("/api/users/:user_id/tasks/" + thisTaskID, {
       type: "PUT",
       data: {

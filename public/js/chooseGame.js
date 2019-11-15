@@ -1,5 +1,4 @@
 var backgroundColor = ["#2a8e9d", "#ff5245", "#374050", "#ffc938"];
-
 $(document).ready(function() {
   /* eslint-disable prettier/prettier */
   //modal
@@ -27,15 +26,14 @@ $(document).ready(function() {
     var gameTime = $(this).children("h5").text();
     // eslint-disable-next-line camelcase
     var gameID = { game_id: $(this).parent().attr("data-id") };
-    var thisUserID = 1;
-    //userID update
+   
     $("#chooseGameModalTitle").text(gameTitle);
     $("#chooseGameModalTime").text("You have " + gameTime);
 
     $("#chooseGameSelectedGame").modal("show");
 
     $("#chooseGameStartGame").on("click", function () {
-      $.ajax("/api/users/" + thisUserID + "/joingame", {
+      $.ajax("/api/users/1/joingame", {
         type: "POST",
         data: gameID
       }).then(

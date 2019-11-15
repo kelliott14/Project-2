@@ -23,9 +23,9 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     }
   });
-  UserGame.associate = function(models){
-    UserGame.belongsTo(models.User, {foreignKey: {allowNull: false}})
-    UserGame.belongsTo(models.Task, {foreignKey: {allowNull: false}})
+  UserTask.associate = function(models){
+    UserTask.belongsTo(models.User, {foreignKey: {allowNull: false}})
+    UserTask.belongsTo(models.Task, {foreignKey: {allowNull: false}})
   };
   return UserTask;
 };

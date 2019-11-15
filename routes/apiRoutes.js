@@ -145,7 +145,6 @@ module.exports = function(app) {
 
   // Sets a UserTask to done and increments the UserGame's points by the Task's points.
   app.put("/api/users/:user_id/tasks/:task_id", function(req, res) {
-    console.log(userLoggedIn.getId());
     if (req.body.task_done) {
       db.UserTask.findOne({
         where: {

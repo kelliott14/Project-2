@@ -40,9 +40,9 @@
                 <h4>Tasks</h4>
                 {{#each games.[0] }}
                     {{#if task_done}}
-              <span class="badge taskBadge complete">&#10004;</span>
+              <span class="badge taskBadge complete" data-value="{{ this.TaskId }}">&#10004;</span>
               {{else}}
-              <span class="badge taskBadge incomplete">{{this.task_id}}</span>
+              <span class="badge taskBadge incomplete" data-value="{{ this.TaskId }}">{{@key}}</span>
                     {{/if}}
 
                 {{/each}}
@@ -123,15 +123,13 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title">Task 1</h1>
+        <h1 class="modal-title" id="taskTitle">Task 1</h1>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <h2 class="modal-title">Task Title</h2>
-        <p class="text-centre">This is where the task description will go. 
-            And go and go and go and go and go and go and go and go  and go and go and go </p>
+        <p class="text-centre" id="taskDescription"> </p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn" id="completeTaskItem">Complete</button>

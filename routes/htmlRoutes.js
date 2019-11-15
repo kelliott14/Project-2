@@ -79,7 +79,7 @@ module.exports = function (app) {
     app.get("/playGame/:id", auth, function(req, res) {
     db.sequelize
       .query(
-        "SELECT * FROM ayn9b8lihw1z06tx.usertasks inner join tasks on usertasks.TaskId = tasks.id inner join games on tasks.game_id = games.id inner join usergames on games.id = usergames.GameId where usergames.id = " +
+        "SELECT * FROM foxhunt_db.usertasks inner join tasks on usertasks.TaskId = tasks.id inner join games on tasks.game_id = games.id inner join usergames on games.id = usergames.GameId where usergames.id = " +
           req.params.id
       )
       .then(function(result) {

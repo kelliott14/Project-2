@@ -1,4 +1,33 @@
 $(document).ready(function() {
+  function calculateRemainingTime(startingTime, duration) {
+    var endingTime = moment(startingTime)
+      .add(duration, "hours")
+      .format();
+    var currentTime = moment().format();
+    return moment(endingTime).diff(moment(currentTime), "hours");
+  }
+  var startTime;
+  var thisGame = $("#gameTitle").attr("gameID");
+  var thisUsergame = $("#gameTitle").attr("usergameID");
+  $.ajax("/api/usergame/" + thisUsergame, {
+    type: "GET",
+    data: {
+      GameID: thisGame
+    }
+  }).then(function(data) {
+    console.log(data)
+    startTime = data.start_time;
+    $.ajax("/api/games/" + thisGame, {
+      type: "GET"
+    }).then(function(gameData) {
+      var gameLength = gameData.game_length;
+      console.log(startTime);
+      console.log(gameLength);
+      var timeRemaining = calculateRemainingTime(startTime, gameLength);
+      $("#timeRemaining").text(timeRemaining + " hrs");
+    });
+  });
+
   $("#viewLeaderboardModal").on("click", function() {
     $("#leaderBoardModal").modal("show");
   });
@@ -19,14 +48,14 @@ $(document).ready(function() {
 
   $("#completeTaskItem").on("click", function() {
     var thisTaskID = $(this).attr("data-value");
-    
-    console.log(thisTaskID)
+
+    console.log(thisTaskID);
     $.ajax("/api/users/:user_id/tasks/" + thisTaskID, {
       type: "PUT",
       data: {
         task_done: false
       }
-  }).then(function() {
+    }).then(function() {
       location.reload();
     });
   });

@@ -1,6 +1,7 @@
 /* eslint-disable camelcase */
 var db = require("../models");
 var userLoggedIn = require("../auth/userLoggedIn");
+
 module.exports = function(app) {
   // Get all games: user choosing a game to play
   app.get("/api/games", function(req, res) {
@@ -15,7 +16,7 @@ module.exports = function(app) {
       if (!dbGame) {
         res.status(404).send("Not found.");
       }
-      db.Task.findAll({ where: { id: req.params.id } }).then(function(dbTasks) {
+      db.Task.findAll({ where: { game_id: req.params.id } }).then(function(dbTasks) {
         res.json(Object.assign({ tasks: dbTasks }, dbGame.dataValues));
       });
     });

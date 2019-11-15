@@ -9,20 +9,18 @@ $(document).ready(function() {
   var startTime;
   var thisGame = $("#gameTitle").attr("gameID");
   var thisUsergame = $("#gameTitle").attr("usergameID");
-  $.ajax("/api/usergame/" + thisUsergame, {
+  console.log(thisGame)
+  $.ajax("/api/users/:user_id/games/" + thisGame, {
     type: "GET",
     data: {
       GameID: thisGame
     }
   }).then(function(data) {
-    console.log(data)
     startTime = data.start_time;
     $.ajax("/api/games/" + thisGame, {
       type: "GET"
     }).then(function(gameData) {
       var gameLength = gameData.game_length;
-      console.log(startTime);
-      console.log(gameLength);
       var timeRemaining = calculateRemainingTime(startTime, gameLength);
       $("#timeRemaining").text(timeRemaining + " hrs");
     });

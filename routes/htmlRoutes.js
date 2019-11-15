@@ -53,8 +53,7 @@ module.exports = function (app) {
         db.UserGame.findAll({
             attributes: ['GameId'],
             where: {
-                UserId: userLoggedIn.getId(),
-                game_finished: false
+                UserId: userLoggedIn.getId()
             },
         })
             .then(function (results) {
@@ -79,12 +78,13 @@ module.exports = function (app) {
     app.get("/playGame/:id", auth, function(req, res) {
     db.sequelize
       .query(
-        "SELECT * FROM ayn9b8lihw1z06tx.usertasks inner join tasks on usertasks.TaskId = tasks.id inner join games on tasks.game_id = games.id inner join usergames on games.id = usergames.GameId where usergames.id = " +
+        "SELECT * FROM ayn9b8lihw1z06tx.UserTasks inner join tasks on UserTasks.TaskId = Tasks.id inner join games on Tasks.game_id = Games.id inner join UserGames on Games.id = UserGames.GameId where UserGames.id = " +
           req.params.id
       )
       .then(function(result) {
         console.log(result);
         res.render("playGame", { games: result });
+        console.log(games)
       });
   });
 

@@ -39,7 +39,7 @@ $(document).ready(function() {
       }).then(
         function(data) {
           window.location.replace("/playGame/" + data.id);
-          //api route to display /playGame for the individual game?
+          
         }
       );
     });

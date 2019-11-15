@@ -8,21 +8,17 @@ $(document).ready(function() {
   }
   var startTime;
   var thisGame = $("#gameTitle").attr("gameID");
-  var thisUsergame = $("#gameTitle").attr("usergameID");
-  $.ajax("/api/usergame/" + thisUsergame, {
+  $.ajax("/api/users/:user_id/games/" + thisGame, {
     type: "GET",
     data: {
       GameID: thisGame
     }
   }).then(function(data) {
-    console.log(data)
     startTime = data.start_time;
     $.ajax("/api/games/" + thisGame, {
       type: "GET"
     }).then(function(gameData) {
       var gameLength = gameData.game_length;
-      console.log(startTime);
-      console.log(gameLength);
       var timeRemaining = calculateRemainingTime(startTime, gameLength);
       $("#timeRemaining").text(timeRemaining + " hrs");
     });
@@ -34,13 +30,19 @@ $(document).ready(function() {
 
   $(".taskBadge").on("click", function() {
     var thisTaskID = $(this).attr("data-value");
+    var doneValue = $(this).attr("task-done");
+    if (doneValue == 0) {
+      doneValue = true;
+    }else {
+      doneValue = false;
+    }
     $.ajax("/api/tasks/" + thisTaskID, {
       type: "GET"
     }).then(function(data) {
       $("#taskTitle").text(data.title);
       $("#taskDescription").text(data.description);
       $("#completeTaskItem").attr("data-value", thisTaskID);
-      $("#completeTaskItem").attr("done_value", data.task_done);
+      $("#completeTaskItem").attr("done_value", doneValue);
     });
 
     $("#playGameTaskItemModal").modal("show");
@@ -48,12 +50,11 @@ $(document).ready(function() {
 
   $("#completeTaskItem").on("click", function() {
     var thisTaskID = $(this).attr("data-value");
-
-    console.log(thisTaskID);
+    var doneValue = $(this).attr("done_value");
     $.ajax("/api/users/:user_id/tasks/" + thisTaskID, {
       type: "PUT",
       data: {
-        task_done: false
+        task_done: doneValue
       }
     }).then(function() {
       location.reload();

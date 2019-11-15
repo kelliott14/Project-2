@@ -23,49 +23,64 @@
     </nav>
 
     <div class="container">
-        <h1>My Dashboard</h1>
-        {{!-- <h2 id="dashboardUsernameDisplay">User Name</h2> --}}
-
-        <a type="button" class="btn btn-lg btn-block" role="button" href="/chooseGame">Start New Game</a>
-        <a type="button" class="btn btn-lg btn-block" role="button" href="/adminGameList" id="adminOnlyButton">Edit/Add
-            Game</a>
-        <h1 class="myGames">My Games</h1>
         <div class="row">
-            {{#each userGames }}
-                {{#if game_finished}}
+            <div class="col-md-12">
+                <h1>My Dashboard</h1>
+            </div>
+        </div>
+        <div class="row flex-xl-nowrap">
+            <div class="col-md-12">
+                <a type="button" class="btn btn-lg btn-block" role="button" href="/chooseGame">Start New Game</a>
+                {{#if userGames.[0].User.admin}}
+                <a type="button" class="btn btn-lg btn-block" role="button" href="/adminGameList" id="adminOnlyButton">Edit/Add
+                Game</a>
+                {{/if}}
+            </div>
+        </div>
+
+        <div class="row flex-xl-nowrap">
+            <h1 class="myGames">My Games</h1>
+        </div>
+            <div class="row">
+                <div class="col-sm-6 card-colummns dashboardOpen">
+                    <h2>Open</h2>
+                        {{#each userGames }}
+                            {{#if game_finished}}
+                            {{else}}
+                            <div class="card text-white mb-3" style="max-width: 18rem; background-color: #2a8e9d;" data-value="{{this.id}}">
+                                <div class="card-body">
+                                    <h4 class="card-title chooseGameCardTitles">{{this.Game.title}}</h4>
+                                    {{!-- <span class="badge openGameBadge">4.5 hrs left</span>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: 40%" aria-valuenow="40"
+                                            aria-valuemin="0" aria-valuemax="100">4/10</div>
+                                    </div> --}}
+                                </div>
+                            </div>
+                            {{/if}}
+                            {{/each}}
+                </div>
+            </div>
+        
+        <div class="row">
             <div class="col-sm-6 card-colummns dashboardOpen">
-                <h2>Open</h2>
-                {{!-- static data - to be updated --}}
-                <div class="card text-white mb-3" style="max-width: 18rem; background-color: #2a8e9d;">
-                    <div class="card-body">
-                        <h4 class="card-title chooseGameCardTitles">{{this.title}}</h4>
-                        {{!-- <span class="badge openGameBadge">4.5 hrs left</span>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" style="width: 40%" aria-valuenow="40"
-                                aria-valuemin="0" aria-valuemax="100">4/10</div>
-                        </div> --}}
-                    </div>
-                </div>
-
-    </div>
-        {{else}}
-        <div class="col-sm-6 card-colummns dashboardOpen">
                 <h2>Closed</h2>
-                {{!-- static data - to be updated --}}
-                <div class="card text-white mb-3" style="max-width: 18rem; background-color: #2a8e9d;">
-                    <div class="card-body">
-                        <h4 class="card-title chooseGameCardTitles">{{ this.title }}</h4>
-                        <span class="badge closedGameBadge">{{ this.game_points }}</span>
-                        {{!-- <div class="progress">
-                            <div class="progress-bar" role="progressbar" style="width: 40%" aria-valuenow="40"
-                                aria-valuemin="0" aria-valuemax="100">4/10</div>
-                        </div> --}} 
+                    {{#each userGames }}
+                        {{#if game_finished}}
+                    <div class="card text-white mb-3" style="max-width: 18rem; background-color: #374050;" data-value="{{this.id}}">
+                        <div class="card-body">
+                            <h4 class="card-title chooseGameCardTitles">{{this.Game.title}}</h4>
+                            <span class="badge closedGameBadge">{{ this.game_points }} pts</span>
+                            {{!-- <div class="progress">
+                                <div class="progress-bar" role="progressbar" style="width: 40%" aria-valuenow="40"
+                                    aria-valuemin="0" aria-valuemax="100">4/10</div>
+                            </div> --}} 
+                        </div>
                     </div>
-                </div>
-
-    </div>{{/if}}
-    {{/each}}
-
+            </div>{{/if}}
+             {{/each}}
+        </div>
+    </div>
 </div>
 
-{{!-- <script src="/js/dashboard.js"></script> --}}
+<script src="/js/dashboard.js"></script>

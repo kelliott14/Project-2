@@ -5,10 +5,9 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER,
       references: {
         model: "users",
-        key: "id",
-        allowNull: false
-      }
-      // allowNull: false
+        key: "id"
+      },
+      allowNull: false
       // validate: {
 
       // }
@@ -17,10 +16,9 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER,
       references: {
         model: "games",
-        key: "id",
-        allowNull: false
-      }
-      // allowNull: false
+        key: "id"
+      },
+      allowNull: false
       // validate: {
 
       // }
